@@ -1,1 +1,242 @@
+// --- БАЗА ДАННЫХ КЕЙСОВ (наши 9 кейсов с названиями) ---
+const casesData = [
+    { id: 1, name: "Мотя Лох", price: 500, items: [
+        { name: "AK-47 | Красная линия", price: 1500, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "USP-S | Поток информации", price: 2200, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "Glock-18 | Блок-18", price: 100, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 2, name: "Арсений Даун", price: 1000, items: [
+        { name: "AWP | Азимов", price: 5500, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "Desert Eagle | Поток информации", price: 2100, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "P250 | Пепел", price: 50, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 3, name: "Мотвей Дебил", price: 1500, items: [
+        { name: "AK-47 | Вулкан", price: 7400, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "M4A4 | Темукау", price: 1700, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "Negev | Люцифер", price: 100, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 4, name: "Ваня Лошара", price: 2000, items: [
+        { name: "AWP | Гунгнир", price: 490000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "M4A1-S | Градиент", price: 11000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "Dual Berettas | Ритуал", price: 20, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 5, name: "Дима Фигня", price: 2500, items: [
+        { name: "G3SG1 | Цифровая сетка", price: 10, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "MP5-SD | Невесомый", price: 40, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "P2000 | Импульс", price: 5, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 6, name: "Киберспортсмен", price: 3000, items: [
+        { name: "AK-47 | Наследство", price: 1900, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "M4A1-S | Поток информации", price: 10000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "AWP | Азимов", price: 5500, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 7, name: "Коллекционер", price: 3500, items: [
+        { name: "M4A1-S | Градиент", price: 11000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "AK-47 | Золотая арабеска", price: 800, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "AWP | Удар молнии", price: 400, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 8, name: "Перчатки и Ножи", price: 4000, items: [
+        { name: "★ Керамбит | Ржавый", price: 45000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "★ Нож-бабочка | Ржавый", price: 80000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "★ Водительские перчатки | Королевский змей", price: 7000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]},
+    { id: 9, name: "CRYPTO CASE", price: 0.5, isBtc: true, items: [
+        { name: "AWP | Драконий огонь", price: 150000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "★ Нож-бабочка | Градиент", price: 120000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" },
+        { name: "AK-47 | Дикий лотос", price: 25000, img: "https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f" }
+    ]}
+];
 
+// --- СОСТОЯНИЕ И СОХРАНЕНИЕ ---
+var KEY="starcase_v1",S={user:null,bal:0,btc:0,inv:[],clicks:0,tasksDone:0,cases:0,trade:"",day:"",prog:{},claimed:{},promo:false};
+try{var raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+function $(i){return document.getElementById(i)}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"\u00a0")}
+
+// --- ЗАДАНИЯ ---
+var TASKS=[
+ {id:"login",t:"Заходи каждый день",d:"Зайдите на сайт",goal:1,rw:50},
+ {id:"c50",t:"Разминка кликера",d:"Сделайте 50 кликов",goal:50,rw:100},
+ {id:"c300",t:"Звёздный марафон",d:"Сделайте 300 кликов",goal:300,rw:400},
+ {id:"c1000",t:"Мастер клика",d:"Сделайте 1000 кликов",goal:1000,rw:1500}
+];
+function today(){return new Date().toISOString().slice(0,10)}
+function rollDay(){if(S.day!==today()){S.day=today();S.prog={login:1};S.claimed={};save();}}
+rollDay();
+
+// --- АВАТАРКИ ---
+function avatar(n){var c=(n||"?").charAt(0).toUpperCase();var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f6bff"/><stop offset="1" stop-color="#34d6ff"/></linearGradient></defs><rect width="80" height="80" fill="url(#g)"/><text x="40" y="53" font-size="38" font-weight="700" text-anchor="middle" fill="#fff" font-family="sans-serif">'+c+'</text></svg>';return"data:image/svg+xml;utf8,"+encodeURIComponent(svg)}
+
+// --- УВЕДОМЛЕНИЯ ---
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){t.style.display="none"},2200)}
+
+// --- РЕНДЕР (Отрисовка интерфейса) ---
+function render(){
+ $("balTop").textContent=fmt(S.bal);$("balP").textContent=fmt(S.bal);
+ $("btcBalTop").textContent=S.btc.toFixed(2);$("btcBalP").textContent=S.btc.toFixed(2);
+ $("clicks").textContent=fmt(S.clicks);$("stClicks").textContent=fmt(S.clicks);$("stTasks").textContent=S.tasksDone;$("stCases").textContent=S.cases;
+ var u=S.user;$("login").style.display=u?"none":"";$("userBox").style.display=u?"flex":"none";
+ var name=u||"Гость",a=avatar(name);$("nameTop").textContent=name;$("avaTop").src=a;$("avaP").src=a;$("nameP").textContent=name;$("logout").style.display=u?"":"none";
+ $("trade").value=S.trade;
+ renderTasks(); renderCases(); renderInventory();
+}
+
+function renderTasks(){
+ var h="";TASKS.forEach(function(k){
+  var p=Math.min(S.prog[k.id]||0,k.goal),done=p>=k.goal,cl=S.claimed[k.id];
+  h+='<div class="card task"><div class="in"><b>'+k.t+'</b><div class="note" style="margin:0">'+k.d+' · '+p+'/'+k.goal+'</div><div class="bar"><i style="width:'+(p/k.goal*100)+'%"></i></div></div><div class="rw">+'+k.rw+' ₽</div><button class="btn" data-claim="'+k.id+'"'+((!done||cl)?' disabled':'')+'>'+(cl?'Получено':'Забрать')+'</button></div>';
+ });$("taskList").innerHTML=h;
+}
+
+function renderCases(){
+ var h="";
+ casesData.forEach(function(c){
+  var isBtc = c.isBtc;
+  h += '<div class="case-card '+(isBtc?'btc-card':'')+'" onclick="openCase('+c.id+')">';
+  h += '<div class="case-img">'+(isBtc?'₿':'📦')+'</div>';
+  h += '<div class="case-name">'+c.name+'</div>';
+  h += '<div class="case-price">'+(isBtc?c.price.toFixed(2)+' ₿':fmt(c.price)+' ₽')+'</div>';
+  h += '<button class="btn-buy '+(isBtc?'btc-buy':'')+'">Открыть</button>';
+  h += '</div>';
+ });
+ $("caseGrid").innerHTML=h;
+}
+
+function renderInventory(){
+ var h="";
+ if(S.inv.length===0){
+  h = '<div class="card empty" style="grid-column:1/-1">Предметов пока нет. Они появятся здесь после открытия кейсов.</div>';
+ }else{
+  S.inv.forEach(function(item, i){
+   h += '<div class="inv-item">';
+   h += '<img src="'+item.img+'" alt="skin">';
+   h += '<div class="inv-name" title="'+item.name+'">'+item.name+'</div>';
+   h += '<div class="inv-price">'+fmt(item.price)+' ₽</div>';
+   h += '<button class="btn-sell" onclick="sellItem('+i+')">Продать за '+fmt(item.price)+' ₽</button>';
+   h += '<button class="btn-upg" onclick="selectUpgrade('+i+')">В апгрейд</button>';
+   h += '</div>';
+  });
+ }
+ $("invGrid").innerHTML=h;
+}
+
+// --- ЛОГИКА КЕЙСОВ ---
+function openCase(id){
+ var c = casesData.find(function(x){return x.id===id});
+ if(c.isBtc){
+  if(S.btc < c.price){toast("Недостаточно биткоинов!");return;}
+  S.btc -= c.price;
+ }else{
+  if(S.bal < c.price){toast("Недостаточно средств!");return;}
+  S.bal -= c.price;
+ }
+ var item = c.items[Math.floor(Math.random()*c.items.length)];
+ S.inv.push(item);
+ S.cases++;
+ save(); render();
+ $("winImg").src = item.img;
+ $("winName").textContent = item.name;
+ $("winPrice").textContent = fmt(item.price) + ' ₽';
+ $("mWin").classList.add("on");
+}
+
+function sellItem(index){
+ var item = S.inv[index];
+ S.bal += item.price;
+ S.inv.splice(index, 1);
+ save(); render();
+ toast("Вы продали "+item.name+" за "+fmt(item.price)+" ₽");
+}
+
+// --- ЛОГИКА АПГРЕЙДА ---
+var upgItem = null, upgMult = null, upgChance = null;
+
+function selectUpgrade(index){
+ upgItem = S.inv[index];
+ upgItem._invIndex = index;
+ $("upgFrom").innerHTML = '<img src="'+upgItem.img+'"><div class="inv-name">'+upgItem.name+'</div><div class="inv-price">'+fmt(upgItem.price)+' ₽</div>';
+ location.hash = "#upgrade";
+}
+
+function setUpgrade(mult, chance, btn){
+ upgMult = mult; upgChance = chance;
+ document.querySelectorAll('.mult-btn').forEach(function(b){b.classList.remove('on')});
+ btn.classList.add('on');
+ if(upgItem){
+  var targetPrice = Math.floor(upgItem.price * mult);
+  $("upgTo").innerHTML = '<div style="font-size:20px;font-weight:800;color:var(--gold)">'+fmt(targetPrice)+' ₽</div><div style="font-size:12px;color:var(--mu)">Шанс: '+chance+'%</div>';
+ }
+}
+
+function doUpgrade(){
+ if(!upgItem || !upgMult){toast("Выберите скин и множитель!");return;}
+ var roll = Math.random() * 100;
+ var targetPrice = Math.floor(upgItem.price * upgMult);
+ if(roll <= upgChance){
+  S.bal += targetPrice;
+  S.inv.splice(upgItem._invIndex, 1);
+  toast("УСПЕХ! Вы получили "+fmt(targetPrice)+" ₽");
+ }else{
+  S.inv.splice(upgItem._invIndex, 1);
+  toast("Провал! Скин сгорел.");
+ }
+ upgItem = null; upgMult = null;
+ $("upgFrom").innerHTML = '<span>Выберите скин<br>в инвентаре</span>';
+ $("upgTo").innerHTML = '<span>Результат</span>';
+ document.querySelectorAll('.mult-btn').forEach(function(b){b.classList.remove('on')});
+ save(); render();
+}
+
+// --- КЛИКЕР ---
+$("bigBtn").addEventListener("click",function(e){
+ rollDay();
+ S.bal += 10;
+ S.clicks++;
+ ["c50","c300","c1000"].forEach(function(id){S.prog[id]=(S.prog[id]||0)+1});
+ save(); render();
+ var f=document.createElement("div");f.className="fly";f.textContent="+10 ₽";
+ var x=e.clientX||innerWidth/2,y=e.clientY||innerHeight/2;f.style.left=(x-8+(Math.random()*40-20))+"px";f.style.top=(y-20)+"px";
+ document.body.appendChild(f);setTimeout(function(){f.remove()},800);
+});
+
+// --- ЗАДАНИЯ ---
+$("taskList").addEventListener("click",function(e){
+ var id=e.target.getAttribute("data-claim");if(!id)return;
+ var k=TASKS.filter(function(x){return x.id===id})[0];
+ if(S.claimed[id]||(S.prog[id]||0)<k.goal)return;
+ S.claimed[id]=1;S.bal+=k.rw;S.tasksDone++;save();render();toast("+"+k.rw+" ₽ за задание");
+});
+
+// --- ПОПОЛНЕНИЕ ---
+var PACKS=[[1000,"99 ₽"],[5000,"449 ₽"],[10000,"849 ₽"],[50000,"3 990 ₽"],[1,"1 BTC (Демо)"]];
+$("packs").innerHTML=PACKS.map(function(p,i){return'<button class="pack" data-pk="'+i+'"><b>'+(p[0]===1?'₿ 1':'₽ '+fmt(p[0]))+'</b>'+p[1]+'</button>'}).join("");
+$("packs").addEventListener("click",function(e){
+ var b=e.target.closest("[data-pk]");if(!b)return;
+ var p=PACKS[b.getAttribute("data-pk")];
+ if(p[0]===1){ S.btc += 1; } else { S.bal += p[0]; }
+ save();render();$("mTop").classList.remove("on");toast("Зачислено "+(p[0]===1?'1 BTC':fmt(p[0])+" ₽"));
+});
+function openTop(){$("mTop").classList.add("on")}
+$("topup").onclick=openTop;$("topup2").onclick=openTop;
+
+// --- ВХОД / ПРОФИЛЬ ---
+$("login").onclick=function(){$("mLogin").classList.add("on");$("nick").focus()};
+$("doLogin").onclick=function(){var n=$("nick").value.trim();if(!n){toast("Введите ник");return}S.user=n;save();render();$("mLogin").classList.remove("on");toast("Добро пожаловать, "+n)};
+$("logout").onclick=function(){S.user=null;save();render();location.hash="cases"};
+$("userBox").onclick=function(){location.hash="profile"};
+$("saveTrade").onclick=function(){S.trade=$("trade").value.trim();save();toast("Trade URL сохранён")};
+$("applyPromo").onclick=function(){var c=$("promo").value.trim().toUpperCase();if(c==="STAR-50"&&!S.promo){S.promo=true;S.bal+=50;save();render();toast("+50 ₽ по промокоду")}else toast(S.promo&&c==="STAR-50"?"Код уже использован":"Код не найден")};
+
+// --- МОДАЛКИ ---
+document.querySelectorAll("[data-close]").forEach(function(b){b.onclick=function(){b.closest(".modal").classList.remove("on")}});
+document.querySelectorAll(".modal").forEach(function(m){m.addEventListener("click",function(e){if(e.target===m)m.classList.remove("on")})});
+
+// --- РОУТИНГ ---
+function route(){var v=(location.hash||"#cases").slice(1);if(!$("v-"+v))v="cases";
+ document.querySelectorAll(".view").forEach(function(s){s.classList.toggle("on",s.id==="v-"+v)});
+ document.querySelectorAll("#nav a").forEach(function(a){a.classList.toggle("on",a.getAttribute("data-v")===v)})}
+addEventListener("hashchange",route);
+
+// --- СТАРТ ---
+route();render();
