@@ -3,236 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StarCase — CS2</title>
+<title>StarCase — Все скины CS2</title>
 <style>
-:root{--bg:#0d0d12;--sf:#16161f;--sf2:#1e1e2a;--tx:#fff;--mu:#8a8a9e;--ac:#ffcc00;--bd:#2a2a3a;--ok:#3ee0a8;--red:#ff5252}
+:root{--bg:#0a0a0f;--sf:#12121a;--sf2:#1a1a24;--tx:#e8e8f0;--mu:#6a6a80;--ac:#ffcc00;--bd:#2a2a38;--ok:#3ee0a8;--red:#ff5252}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font:14px/1.4 system-ui,sans-serif;min-height:100vh}
-button{font:inherit;color:inherit;cursor:pointer;border:none}
-header{display:flex;align-items:center;gap:20px;padding:12px 20px;background:var(--sf);border-bottom:1px solid var(--bd);flex-wrap:wrap}
-.logo{font-size:20px;font-weight:800;color:var(--ac)}
-nav{display:flex;gap:4px;flex:1}
-nav a{padding:8px 14px;border-radius:8px;color:var(--mu);text-decoration:none;font-weight:600}
+body{background:var(--bg);color:var(--tx);font:14px/1.5 system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;background:var(--sf);border-bottom:1px solid var(--bd);flex-wrap:wrap;position:sticky;top:0;z-index:10}
+.logo{font-size:20px;font-weight:800;color:var(--ac);white-space:nowrap}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:8px;color:var(--mu);text-decoration:none;font-weight:600;cursor:pointer;white-space:nowrap}
 nav a.on,nav a:hover{background:var(--sf2);color:var(--tx)}
-.bal{display:flex;gap:10px;background:var(--sf2);padding:6px 14px;border-radius:20px;font-weight:700}
+.bal{display:flex;gap:8px;align-items:center;background:var(--sf2);padding:6px 14px;border-radius:20px;font-weight:700;white-space:nowrap}
 .bal b{color:var(--ac)}
-.btn{background:var(--ac);color:#000;padding:8px 16px;border-radius:8px;font-weight:700}
-.btn:hover{opacity:.9}
-.view{display:none;padding:20px;max-width:1100px;margin:0 auto}
+.btn-ac{background:var(--ac);color:#000;padding:8px 16px;border-radius:8px;font-weight:700}
+.btn-ac:hover{opacity:.9}
+.view{display:none;padding:20px;max-width:1200px;margin:0 auto}
 .view.on{display:block}
-h1{font-size:24px;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.case-card{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:.2s}
-.case-card:hover{border-color:var(--ac);transform:translateY(-3px)}
-.case-card img{width:100%;height:100px;object-fit:contain}
-.case-card .nm{font-weight:700;margin:8px 0 4px;font-size:13px}
-.case-card .pr{color:var(--ac);font-weight:800}
-.inv-item{background:var(--sf2);border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center}
-.inv-item img{width:100%;height:70px;object-fit:contain}
-.inv-item .nm{font-size:11px;margin:6px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.inv-item .pr{color:var(--ac);font-weight:700;font-size:12px}
-.btn-sell{background:var(--ok);color:#000;width:100%;padding:5px;border-radius:6px;font-size:11px;font-weight:700;margin-top:6px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+h1{font-size:22px;margin-bottom:16px}
+.loader{text-align:center;padding:60px;color:var(--mu)}
+.loader .spin{display:inline-block;width:40px;height:40px;border:4px solid var(--sf2);border-top-color:var(--ac);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.case-card{background:var(--sf2);border:1px solid var(--bd);border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:.15s}
+.case-card:hover{border-color:var(--ac);transform:translateY(-2px)}
+.case-card img{width:100%;height:80px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.case-card .nm{font-size:11px;font-weight:600;margin:6px 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-card .pr{color:var(--ac);font-weight:800;font-size:14px}
+.inv-item{background:var(--sf2);border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center;position:relative}
+.inv-item img{width:100%;height:60px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+.inv-item .nm{font-size:10px;margin:4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inv-item .pr{color:var(--ac);font-weight:700;font-size:11px}
+.btn-sell{background:var(--ok);color:#000;width:100%;padding:5px;border-radius:6px;font-size:10px;font-weight:700;margin-top:4px;cursor:pointer}
+.btn-sell:hover{opacity:.8}
+.empty-msg{color:var(--mu);text-align:center;padding:40px;grid-column:1/-1}
+/* Апгрейд */
+.upg-layout{display:grid;grid-template-columns:240px 1fr 280px;gap:16px;align-items:start}
+@media(max-width:900px){.upg-layout{grid-template-columns:1fr}}
+.upg-panel{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:12px;max-height:600px;overflow-y:auto}
+.upg-panel h3{font-size:13px;color:var(--mu);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.upg-item{display:flex;align-items:center;gap:8px;padding:6px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.upg-item:hover,.upg-item.sel{border-color:var(--ac);background:rgba(255,204,0,.05)}
+.upg-item img{width:36px;height:36px;object-fit:contain}
+.upg-item .ui{flex:1;min-width:0}
+.upg-item .ui .n{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upg-item .ui .p{font-size:10px;color:var(--ac);font-weight:700}
+.upg-center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.circle-wrap{width:160px;height:160px;position:relative}
+.circle-wrap svg{transform:rotate(-90deg);width:100%;height:100%}
+.circle-wrap .txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:var(--ac)}
+.circle-wrap .txt small{font-size:10px;color:var(--mu);font-weight:400;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.upg-info{font-size:11px;color:var(--mu);min-height:20px}
+.btn-upg{background:var(--ac);color:#000;padding:14px 32px;border-radius:10px;font-size:18px;font-weight:800;width:100%;max-width:260px;cursor:pointer}
+.btn-upg:disabled{background:var(--sf2);color:var(--mu);cursor:not-allowed}
+.btn-upg:hover:not(:disabled){opacity:.9}
+/* Модалки */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:16px;backdrop-filter:blur(6px)}
 .modal.on{display:flex}
-.modal-c{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px;width:100%;max-width:700px}
-.roll-box{position:relative;height:140px;overflow:hidden;background:var(--sf2);border-radius:10px;margin:16px 0}
-.roll-strip{display:flex;position:absolute;left:0;transition:transform 4.5s cubic-bezier(.1,.8,.2,1)}
-.roll-item{width:110px;height:110px;flex-shrink:0;margin:15px 8px;background:var(--sf);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--bd)}
+.modal-card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px;width:100%;max-width:750px;max-height:90vh;overflow-y:auto}
+.modal-card h2{text-align:center;color:var(--ac);margin-bottom:12px;font-size:20px}
+.roll-strip{display:flex;position:absolute;left:0;transition:transform 4.5s cubic-bezier(.1,.8,.2,1);will-change:transform}
+.roll-box{position:relative;height:150px;overflow:hidden;background:var(--sf2);border-radius:10px;margin:12px 0;border:1px solid var(--bd)}
+.roll-item{width:120px;height:120px;flex-shrink:0;margin:15px 6px;background:var(--sf);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--bd)}
 .roll-item img{width:70px;height:70px;object-fit:contain}
-.roll-item span{font-size:9px;text-align:center;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;padding:0 4px}
-.marker{position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--ac);transform:translateX(-50%);z-index:5;box-shadow:0 0 10px var(--ac)}
-.upg-layout{display:grid;grid-template-columns:260px 1fr 300px;gap:16px}
-@media(max-width:800px){.upg-layout{grid-template-columns:1fr}}
-.upg-list{background:var(--sf);border-radius:12px;padding:12px;max-height:500px;overflow-y:auto}
-.upg-list .it{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;cursor:pointer;border:1px solid transparent}
-.upg-list .it:hover,.upg-list .it.sel{border-color:var(--ac);background:rgba(255,204,0,.05)}
-.upg-list .it img{width:40px;height:40px;object-fit:contain}
-.upg-center{background:var(--sf);border-radius:12px;padding:20px;text-align:center}
-.circle{width:180px;height:180px;margin:0 auto;position:relative}
-.circle svg{transform:rotate(-90deg)}
-.circle .pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:var(--ac)}
-.upg-btn{background:var(--ac);color:#000;padding:14px 30px;border-radius:10px;font-size:18px;font-weight:800;width:100%;max-width:280px;margin-top:16px}
-.upg-btn:disabled{background:var(--sf2);color:var(--mu)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--sf);border:1px solid var(--ac);padding:10px 20px;border-radius:10px;display:none;z-index:200}
+.roll-item span{font-size:9px;text-align:center;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;padding:0 4px;color:var(--mu)}
+.roll-marker{position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--ac);transform:translateX(-50%);z-index:5;box-shadow:0 0 12px var(--ac)}
+.win-content{text-align:center;padding:10px 0}
+.win-content img{max-height:130px;margin-bottom:12px;filter:drop-shadow(0 0 20px var(--ac))}
+.win-content h3{font-size:18px;margin-bottom:4px}
+.win-content .wp{font-size:22px;font-weight:800;color:var(--ok);margin-bottom:16px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--sf);border:1px solid var(--ac);padding:10px 24px;border-radius:10px;font-weight:600;display:none;z-index:200;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.5)}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">✦ StarCase</div>
   <nav>
-    <a href="#cases" onclick="nav('cases')" class="on">Кейсы</a>
-    <a href="#inventory" onclick="nav('inventory')">Инвентарь</a>
-    <a href="#upgrade" onclick="nav('upgrade')">Апгрейд</a>
+    <a id="nav-cases" class="on" onclick="nav('cases')">Кейсы</a>
+    <a id="nav-inv" onclick="nav('inv')">Инвентарь</a>
+    <a id="nav-upg" onclick="nav('upg')">Апгрейд</a>
   </nav>
-  <div class="bal">₽ <b id="bal">0</b> <button class="btn" onclick="addBal()">+</button></div>
+  <div class="bal">₽ <b id="bal">0</b> <button class="btn-ac" onclick="addBal()" style="padding:4px 10px;font-size:12px">+</button></div>
 </header>
 
 <!-- КЕЙСЫ -->
-<div id="cases" class="view on">
-  <h1>Кейсы CS2</h1>
-  <div class="grid" id="caseGrid"></div>
+<div id="view-cases" class="view on">
+  <h1>Все кейсы CS2</h1>
+  <div id="caseGrid" class="grid"><div class="loader"><div class="spin"></div><p>Загрузка кейсов...</p></div></div>
 </div>
 
 <!-- ИНВЕНТАРЬ -->
-<div id="inventory" class="view">
+<div id="view-inv" class="view">
   <h1>Инвентарь</h1>
-  <div class="grid" id="invGrid"></div>
+  <div id="invGrid" class="grid"></div>
 </div>
 
 <!-- АПГРЕЙД -->
-<div id="upgrade" class="view">
+<div id="view-upg" class="view">
   <h1>Апгрейд</h1>
   <div class="upg-layout">
-    <div class="upg-list" id="upgInv"></div>
+    <div class="upg-panel" id="upgInv"><h3>Мой инвентарь</h3><div id="upgInvList"></div></div>
     <div class="upg-center">
-      <div class="circle">
-        <svg viewBox="0 0 180 180"><circle cx="90" cy="90" r="80" fill="none" stroke="#2a2a3a" stroke-width="10"/><circle id="arc" cx="90" cy="90" r="80" fill="none" stroke="var(--ac)" stroke-width="10" stroke-dasharray="502" stroke-dashoffset="502"/></svg>
-        <div class="pct" id="pct">0%</div>
+      <div class="circle-wrap">
+        <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="70" fill="none" stroke="#2a2a38" stroke-width="8"/><circle id="arc" cx="80" cy="80" r="70" fill="none" stroke="var(--ac)" stroke-width="8" stroke-dasharray="439.8" stroke-dashoffset="439.8"/></svg>
+        <div class="txt" id="pct">0%<small>шанс</small></div>
       </div>
-      <div style="margin-top:12px;font-size:12px;color:var(--mu)">Выбрано: <span id="selInfo">ничего</span></div>
-      <button class="upg-btn" id="upgBtn" disabled onclick="doUpg()">Улучшить</button>
+      <div class="upg-info" id="selInfo">Выберите скин слева и цель справа</div>
+      <button class="btn-upg" id="upgBtn" disabled onclick="doUpg()">УЛУЧШИТЬ</button>
     </div>
-    <div class="upg-list" id="targetList"></div>
+    <div class="upg-panel" id="upgTarget"><h3>Цель</h3><input type="text" id="searchTarget" placeholder="Поиск..." style="width:100%;padding:6px 10px;margin-bottom:8px;border-radius:6px;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font-size:12px" oninput="renderTargets()"><div id="targetList"></div></div>
   </div>
 </div>
 
 <!-- МОДАЛКА РУЛЕТКИ -->
 <div class="modal" id="mRoll">
-  <div class="modal-c">
-    <h2 style="text-align:center;color:var(--ac)">Открытие...</h2>
-    <div class="roll-box">
-      <div class="marker"></div>
-      <div class="roll-strip" id="strip"></div>
-    </div>
+  <div class="modal-card">
+    <h2>Открытие кейса...</h2>
+    <div class="roll-box"><div class="roll-marker"></div><div class="roll-strip" id="strip"></div></div>
+  </div>
+</div>
+
+<!-- МОДАЛКА ВЫИГРЫША -->
+<div class="modal" id="mWin">
+  <div class="modal-card">
+    <h2 style="color:var(--ok)">Вы выиграли!</h2>
+    <div class="win-content" id="winContent"></div>
+    <button class="btn-ac" style="width:100%;padding:12px" onclick="closeModal('mWin')">Забрать</button>
+  </div>
+</div>
+
+<!-- МОДАЛКА РЕЗУЛЬТАТА АПГРЕЙДА -->
+<div class="modal" id="mUpgResult">
+  <div class="modal-card">
+    <h2 id="upgResTitle"></h2>
+    <div class="win-content" id="upgResContent"></div>
+    <button class="btn-ac" style="width:100%;padding:12px" onclick="closeModal('mUpgResult')">ОК</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// --- ДАННЫЕ ---
-const SKINS = [
-  {n:"AK-47 | Redline",p:1600,i:"https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f"},
-  {n:"AWP | Asiimov",p:5300,i:"https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f"},
-  {n:"M4A1-S | Printstream",p:9300,i:"https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f"},
-  {n:"★ Butterfly | Fade",p:142600,i:"https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f"}
-];
-const CASES = [
-  {id:1,n:"Starter",p:500,items:[0,1,2]},
-  {id:2,n:"Premium",p:2000,items:[0,2,3]}
-];
-let bal = 10000;
-let inv = []; // {n,p,i}
-let selIdx = -1, selTarget = null;
+// ============================================================
+// 1. ЗАГРУЗКА ДАННЫХ ИЗ API
+// ============================================================
+const API = 'https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en';
+let SKINS = [];   // {id, name, image, rarity, price}
+let CASES = [];   // {id, name, image, items: [skinId,...], price}
+let balance = 10000;
+let inv = [];     // {id, name, image, price}
+let selSrc = -1, selTgt = null;
 
-// --- УТИЛИТЫ ---
 const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString('ru-RU');
-const toast = m => { const t=$("toast"); t.textContent=m; t.style.display="block"; setTimeout(()=>t.style.display="none",2000); };
+const toast = m => { const t=$("toast"); t.textContent=m; t.style.display="block"; setTimeout(()=>t.style.display="none",2200); };
 
-// --- НАВИГАЦИЯ ---
-function nav(v){
-  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
-  $(v).classList.add('on');
-  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+v));
-  if(v==='upgrade') renderUpg();
+// Генерация цены на основе редкости (реалистичный разброс)
+function genPrice(rarityName, isKnife) {
+  const r = (rarityName||'').toLowerCase();
+  let base = 10;
+  if (r.includes('covert') || r.includes('extraordinary')) base = 3000;
+  else if (r.includes('classified')) base = 500;
+  else if (r.includes('restricted')) base = 150;
+  else if (r.includes('mil-spec')) base = 40;
+  else if (r.includes('industrial')) base = 10;
+  else if (r.includes('consumer')) base = 3;
+  if (isKnife) base *= 20;
+  // Случайный разброс ±60%
+  return Math.round(base * (0.4 + Math.random() * 1.2));
 }
 
-// --- РЕНДЕР ---
-function render(){
-  $("bal").textContent = fmt(bal);
-  // Кейсы
-  $("caseGrid").innerHTML = CASES.map(c=>{
-    return `<div class="case-card" onclick="openCase(${c.id})">
-      <img src="https://community.cloudflare.steamstatic.com/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvR6a2xbQUtzDxJSpKz3Yl9j18b3f7iPmqzWzIGZk6qqZ7eJlDoBsZ0o3LiTpo2s3Fbs_0VvMWj0dYXEJgY4c0u9Nw/360fx360f">
-      <div class="nm">${c.n}</div><div class="pr">${fmt(c.p)} ₽</div>
-    </div>`;
-  }).join('');
-  // Инвентарь
-  $("invGrid").innerHTML = inv.length ? inv.map((it,i)=>`
-    <div class="inv-item"><img src="${it.i}"><div class="nm">${it.n}</div><div class="pr">${fmt(it.p)} ₽</div>
-    <button class="btn-sell" onclick="sell(${i})">Продать</button></div>
-  `).join('') : '<p style="color:var(--mu)">Пусто</p>';
+async function loadData() {
+  try {
+    const [skinsRes, cratesRes] = await Promise.all([
+      fetch(`${API}/skins.json`),
+      fetch(`${API}/crates.json`)
+    ]);
+    const rawSkins = await skinsRes.json();
+    const rawCrates = await cratesRes.json();
+
+    // Обработка скинов
+    SKINS = rawSkins.map(s => {
+      const isKnife = s.category?.name?.toLowerCase().includes('knife') || s.weapon?.name?.toLowerCase().includes('knife');
+      return {
+        id: s.id,
+        name: s.name,
+        image: s.image,
+        rarity: s.rarity?.name || '',
+        price: genPrice(s.rarity?.name, isKnife)
+      };
+    }).filter(s => s.image); // Только с картинками
+
+    // Обработка кейсов: берем только те, у которых есть картинка
+    const cratesWithImg = rawCrates.filter(c => c.image);
+    // Для каждого кейса генерируем "содержимое" из 4 случайных скинов
+    CASES = cratesWithImg.map(c => ({
+      id: c.id,
+      name: c.name,
+      image: c.image,
+      items: [
+        SKINS[Math.floor(Math.random()*SKINS.length)],
+        SKINS[Math.floor(Math.random()*SKINS.length)],
+        SKINS[Math.floor(Math.random()*SKINS.length)],
+        SKINS[Math.floor(Math.random()*SKINS.length)]
+      ].map(s => s.id),
+      price: Math.round(500 + Math.random() * 4500) // 500 - 5000
+    }));
+
+    console.log(`Загружено ${SKINS.length} скинов и ${CASES.length} кейсов.`);
+    renderAll();
+  } catch (e) {
+    console.error(e);
+    $("caseGrid").innerHTML = `<div class="empty-msg">Ошибка загрузки данных.<br>Проверьте интернет и обновите страницу.</div>`;
+  }
 }
 
-// --- КЕЙС ---
-function openCase(id){
-  const c = CASES.find(x=>x.id===id);
-  if(bal < c.p){ toast("Мало денег"); return; }
-  bal -= c.p;
-  const win = SKINS[c.items[Math.floor(Math.random()*c.items.length)]];
-  inv.push(win);
-  save(); render();
+// ============================================================
+// 2. РЕНДЕР
+// ============================================================
+function renderAll() {
+  $("bal").textContent = fmt(balance);
+  renderCases();
+  renderInventory();
+  renderUpgInv();
+  renderTargets();
+}
+
+function renderCases() {
+  const grid = $("caseGrid");
+  if (!CASES.length) return;
+  grid.innerHTML = CASES.map(c => `
+    <div class="case-card" onclick="openCase('${c.id}')">
+      <img src="${c.image}" loading="lazy">
+      <div class="nm" title="${c.name}">${c.name}</div>
+      <div class="pr">${fmt(c.price)} ₽</div>
+    </div>
+  `).join('');
+}
+
+function renderInventory() {
+  const grid = $("invGrid");
+  if (!inv.length) {
+    grid.innerHTML = '<div class="empty-msg">Инвентарь пуст. Откройте кейс!</div>';
+  } else {
+    grid.innerHTML = inv.map((it, i) => `
+      <div class="inv-item">
+        <img src="${it.image}">
+        <div class="nm" title="${it.name}">${it.name}</div>
+        <div class="pr">${fmt(it.price)} ₽</div>
+        <button class="btn-sell" onclick="sell(${i})">Продать</button>
+      </div>
+    `).join('');
+  }
+}
+
+function renderUpgInv() {
+  const list = $("upgInvList");
+  if (!inv.length) {
+    list.innerHTML = '<div style="color:var(--mu);font-size:11px;text-align:center;padding:20px">Пусто</div>';
+  } else {
+    list.innerHTML = inv.map((it, i) => `
+      <div class="upg-item ${selSrc===i?'sel':''}" onclick="pickSrc(${i})">
+        <img src="${it.image}">
+        <div class="ui"><div class="n">${it.name}</div><div class="p">${fmt(it.price)} ₽</div></div>
+      </div>
+    `).join('');
+  }
+}
+
+function renderTargets() {
+  const query = ($("searchTarget").value || '').toLowerCase();
+  const list = $("targetList");
+  const filtered = SKINS.filter(s => s.name.toLowerCase().includes(query)).slice(0, 200); // Ограничим для производительности
+  list.innerHTML = filtered.map((s, i) => `
+    <div class="upg-item ${selTgt && selTgt.id===s.id?'sel':''}" onclick="pickTgt(${JSON.stringify(s).replace(/"/g,'&quot;')})">
+      <img src="${s.image}" loading="lazy">
+      <div class="ui"><div class="n">${s.name}</div><div class="p">${fmt(s.price)} ₽</div></div>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// 3. ЛОГИКА КЕЙСОВ
+// ============================================================
+function openCase(id) {
+  const c = CASES.find(x => x.id === id);
+  if (!c) return;
+  if (balance < c.price) { toast("Недостаточно средств!"); return; }
+  balance -= c.price;
+  const winSkin = SKINS.find(s => s.id === c.items[Math.floor(Math.random() * c.items.length)]);
+  if (!winSkin) return;
+  inv.push(winSkin);
+  save();
+  renderAll();
+
   // Рулетка
   const strip = $("strip");
   let html = '';
-  for(let i=0;i<40;i++){
-    const s = i===35 ? win : SKINS[Math.floor(Math.random()*SKINS.length)];
-    html += `<div class="roll-item"><img src="${s.i}"><span>${s.n}</span></div>`;
+  for (let i = 0; i < 50; i++) {
+    const s = i === 45 ? winSkin : SKINS[Math.floor(Math.random() * SKINS.length)];
+    html += `<div class="roll-item"><img src="${s.image}"><span>${s.name}</span></div>`;
   }
   strip.innerHTML = html;
-  strip.style.transition='none'; strip.style.transform='translateX(0)';
+  strip.style.transition = 'none';
+  strip.style.transform = 'translateX(0)';
   $("mRoll").classList.add('on');
-  setTimeout(()=>{
-    const w = $("roll-box")?.offsetWidth || 700;
-    strip.style.transition='transform 4.5s cubic-bezier(.1,.8,.2,1)';
-    strip.style.transform=`translateX(${-(35*126) + w/2 - 55}px)`;
-  },50);
-  setTimeout(()=>{ $("mRoll").classList.remove('on'); toast("Выпало: "+win.n); }, 4800);
+
+  setTimeout(() => {
+    const boxW = document.querySelector('.roll-box').offsetWidth;
+    const itemW = 132; // 120 + margins
+    const targetX = -(45 * itemW) + (boxW / 2) - (itemW / 2);
+    strip.style.transition = 'transform 4.5s cubic-bezier(.1,.8,.2,1)';
+    strip.style.transform = `translateX(${targetX}px)`;
+  }, 50);
+
+  setTimeout(() => {
+    $("mRoll").classList.remove('on');
+    $("winContent").innerHTML = `
+      <img src="${winSkin.image}">
+      <h3>${winSkin.name}</h3>
+      <div class="wp">${fmt(winSkin.price)} ₽</div>
+    `;
+    $("mWin").classList.add('on');
+  }, 4800);
 }
 
-function sell(i){
-  bal += inv[i].p; inv.splice(i,1); save(); render();
+function sell(i) {
+  balance += inv[i].price;
+  inv.splice(i, 1);
+  save();
+  renderAll();
+  toast("Продано за " + fmt(inv[i]?.price || 0) + " ₽");
 }
 
-// --- АПГРЕЙД ---
-function renderUpg(){
-  $("upgInv").innerHTML = inv.length ? inv.map((it,i)=>`
-    <div class="it ${selIdx===i?'sel':''}" onclick="pickSrc(${i})">
-      <img src="${it.i}"><div><div style="font-size:11px">${it.n}</div><div style="color:var(--ac);font-size:12px;font-weight:700">${fmt(it.p)} ₽</div></div>
-    </div>
-  `).join('') : '<p style="color:var(--mu)">Пусто</p>';
-  $("targetList").innerHTML = SKINS.map((s,i)=>`
-    <div class="it ${selTarget===i?'sel':''}" onclick="pickTgt(${i})">
-      <img src="${s.i}"><div><div style="font-size:11px">${s.n}</div><div style="color:var(--ac);font-size:12px;font-weight:700">${fmt(s.p)} ₽</div></div>
-    </div>
-  `).join('');
-  updatePct();
-}
+function addBal() { balance += 10000; save(); renderAll(); toast("+10 000 ₽"); }
 
-function pickSrc(i){ selIdx=i; renderUpg(); }
-function pickTgt(i){ selTarget=i; renderUpg(); }
+// ============================================================
+// 4. АПГРЕЙД
+// ============================================================
+function pickSrc(i) { selSrc = i; renderUpgInv(); updatePct(); }
+function pickTgt(skin) { selTgt = skin; renderTargets(); updatePct(); }
 
-function updatePct(){
-  if(selIdx<0 || selTarget===null){ $("pct").textContent="0%"; $("upgBtn").disabled=true; $("selInfo").textContent="ничего"; return; }
-  const src = inv[selIdx], tgt = SKINS[selTarget];
-  const chance = Math.min(90, Math.max(1, Math.round((src.p / tgt.p)*100)));
-  $("pct").textContent = chance+"%";
+function updatePct() {
+  if (selSrc < 0 || !selTgt) {
+    $("pct").innerHTML = '0%<small>шанс</small>';
+    $("upgBtn").disabled = true;
+    $("selInfo").textContent = "Выберите скин слева и цель справа";
+    $("arc").style.strokeDashoffset = 439.8;
+    return;
+  }
+  const src = inv[selSrc];
+  const chance = Math.min(90, Math.max(1, Math.round((src.price / selTgt.price) * 100)));
+  $("pct").innerHTML = chance + '%<small>шанс</small>';
   $("upgBtn").disabled = false;
-  $("selInfo").textContent = src.n + " → " + tgt.n;
-  const arc = $("arc");
-  arc.style.strokeDashoffset = 502 - (chance/100)*502;
+  $("selInfo").textContent = `${src.name} → ${selTgt.name}`;
+  const circumference = 2 * Math.PI * 70;
+  $("arc").style.strokeDashoffset = circumference - (chance / 100) * circumference;
 }
 
-function doUpg(){
-  if(selIdx<0 || selTarget===null) return;
-  const src = inv[selIdx], tgt = SKINS[selTarget];
-  const chance = Math.min(90, Math.max(1, (src.p / tgt.p)*100));
-  const win = Math.random()*100 <= chance;
-  inv.splice(selIdx,1);
-  if(win){ inv.push(tgt); toast("Успех! Получен "+tgt.n); }
-  else { toast("Провал! Скин сгорел"); }
-  selIdx=-1; selTarget=null; save(); render(); renderUpg();
+function doUpg() {
+  if (selSrc < 0 || !selTgt) return;
+  const src = inv[selSrc];
+  const chance = Math.min(90, Math.max(1, (src.price / selTgt.price) * 100));
+  const win = Math.random() * 100 <= chance;
+
+  inv.splice(selSrc, 1);
+  if (win) {
+    inv.push(selTgt);
+    $("upgResTitle").textContent = "Успех!";
+    $("upgResTitle").style.color = "var(--ok)";
+    $("upgResContent").innerHTML = `<img src="${selTgt.image}"><h3>${selTgt.name}</h3><div class="wp" style="color:var(--ok)">${fmt(selTgt.price)} ₽</div>`;
+  } else {
+    $("upgResTitle").textContent = "Провал!";
+    $("upgResTitle").style.color = "var(--red)";
+    $("upgResContent").innerHTML = `<h3>Скин сгорел</h3><div style="color:var(--mu);margin-top:8px">Вы потеряли: ${src.name}</div>`;
+  }
+  selSrc = -1; selTgt = null;
+  save();
+  renderAll();
+  updatePct();
+  $("mUpgResult").classList.add('on');
 }
 
-// --- СОХРАНЕНИЕ ---
-function save(){ try{ localStorage.setItem('sc', JSON.stringify({bal,inv})); }catch(e){} }
-function load(){ try{ const d=JSON.parse(localStorage.getItem('sc')); if(d){ bal=d.bal; inv=d.inv; } }catch(e){} }
+// ============================================================
+// 5. ВСПОМОГАТЕЛЬНЫЕ
+// ============================================================
+function nav(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  $(`view-${view}`).classList.add('on');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('on'));
+  $(`nav-${view}`).classList.add('on');
+  if (view === 'upg') { renderUpgInv(); renderTargets(); updatePct(); }
+  if (view === 'inv') renderInventory();
+}
 
-function addBal(){ bal+=10000; save(); render(); toast("+10 000 ₽"); }
+function closeModal(id) { $(id).classList.remove('on'); }
 
-// --- СТАРТ ---
-load(); render();
+function save() {
+  try { localStorage.setItem('sc', JSON.stringify({ balance, inv })); } catch (e) {}
+}
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem('sc'));
+    if (d) { balance = d.balance; inv = d.inv; }
+  } catch (e) {}
+}
+
+// ============================================================
+// 6. СТАРТ
+// ============================================================
+load();
+loadData();
 </script>
 </body>
 </html>
