@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>StarCase — кейсы CS2</title>
 <style>
-:root{color-scheme:light dark;--bg:#f3f1fb;--sf:#fff;--sf2:#ebe8f7;--tx:#1b1535;--mu:#6a6490;--ac:#7c4dff;--ac2:#0aa5c9;--gold:#b9770e;--bd:#d9d4ee;--ok:#12906a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8}}
-:root[data-theme="dark"]{--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8}
+:root{color-scheme:light dark;--bg:#f3f1fb;--sf:#fff;--sf2:#ebe8f7;--tx:#1b1535;--mu:#6a6490;--ac:#7c4dff;--ac2:#0aa5c9;--gold:#b9770e;--bd:#d9d4ee;--ok:#12906a;--red:#e74c3c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8;--red:#ff5252}}
+:root[data-theme="dark"]{--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8;--red:#ff5252}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Exo 2",system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
@@ -22,7 +22,8 @@ nav a.on,nav a:hover{background:var(--sf2);color:var(--tx)}
 .right{display:flex;gap:12px;align-items:center}
 .bal{display:flex;align-items:center;gap:10px;background:var(--sf2);padding:6px 6px 6px 14px;border-radius:30px;font-weight:700}
 .bal b{color:var(--gold)}
-.btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;transition:0.2s}
+.btn:hover{opacity:0.9}
 .btn.sm{padding:5px 12px;border-radius:20px}
 .btn.ghost{background:var(--sf2);color:var(--tx)}
 .btn:disabled{opacity:.5;cursor:default}
@@ -98,7 +99,16 @@ h3{margin:0 0 10px;font-size:17px}
 .mult-btn{background:var(--sf2);border:1px solid var(--bd);padding:8px 12px;border-radius:8px;font-weight:bold;font-size:14px}
 .mult-btn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 
-/* --- АНИМАЦИЯ ОТКРЫТИЯ (РУЛЕТКА) --- */
+/* --- МОДАЛЬНОЕ ОКНО ВЫБОРА СКИНА --- */
+#mSelect .card { max-width: 750px; max-height: 85vh; display: flex; flex-direction: column; }
+#mSelect .select-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; overflow-y: auto; padding: 5px; }
+#mSelect .select-item { background: var(--sf2); border: 1px solid var(--bd); border-radius: 8px; padding: 10px; text-align: center; cursor: pointer; transition: 0.15s; }
+#mSelect .select-item:hover { border-color: var(--ac); background: var(--sf); transform: scale(1.02); }
+#mSelect .select-item img { max-height: 55px; max-width: 100%; object-fit: contain; margin-bottom: 5px; }
+#mSelect .select-item .select-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+#mSelect .select-item .select-price { color: var(--gold); font-size: 11px; font-weight: 700; }
+
+/* --- АНИМАЦИЯ КЕЙСА --- */
 #mRoll .card{max-width:800px; padding:0; overflow:hidden; background:var(--bg)}
 .roll-container{position:relative;height:180px;background:var(--sf2);border-top:2px solid var(--bd);border-bottom:2px solid var(--bd);display:flex;align-items:center;overflow:hidden}
 .roll-strip{display:flex;align-items:center;position:absolute;left:0;transition:transform 5s cubic-bezier(0.05, 0.9, 0.1, 1);will-change:transform}
@@ -109,6 +119,19 @@ h3{margin:0 0 10px;font-size:17px}
 .roll-fade{position:absolute;top:0;bottom:0;width:150px;z-index:5;pointer-events:none}
 .roll-fade.left{left:0;background:linear-gradient(90deg, var(--bg) 0%, transparent 100%)}
 .roll-fade.right{right:0;background:linear-gradient(-90deg, var(--bg) 0%, transparent 100%)}
+
+/* --- АНИМАЦИЯ АПГРЕЙДА --- */
+#mUpgSpin .card { max-width: 600px; padding: 0; overflow: hidden; background: var(--bg); text-align: center; }
+.upg-spin-container { position: relative; height: 160px; background: var(--sf2); border-top: 2px solid var(--bd); border-bottom: 2px solid var(--bd); display: flex; align-items: center; overflow: hidden; margin-top: 15px; }
+.upg-spin-strip { display: flex; align-items: center; position: absolute; left: 0; transition: transform 4s cubic-bezier(0.1, 0.8, 0.2, 1); will-change: transform; }
+.upg-spin-item { width: 130px; height: 130px; flex-shrink: 0; margin: 0 10px; background: var(--sf); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid var(--bd); }
+.upg-spin-item.win { border-color: var(--ok); box-shadow: 0 0 15px rgba(62, 224, 168, 0.4); }
+.upg-spin-item.lose { border-color: var(--red); box-shadow: 0 0 15px rgba(255, 82, 82, 0.4); }
+.upg-spin-item span { font-size: 24px; font-weight: 800; margin-top: 10px; }
+.upg-spin-item.win span { color: var(--ok); }
+.upg-spin-item.lose span { color: var(--red); }
+.upg-spin-marker { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: var(--gold); transform: translateX(-50%); z-index: 10; box-shadow: 0 0 15px var(--gold); }
+.upg-result-text { font-size: 22px; font-weight: 800; padding: 20px; display: none; }
 </style>
 </head>
 <body>
@@ -148,7 +171,6 @@ h3{margin:0 0 10px;font-size:17px}
         <h1>Ваш Инвентарь</h1>
         <p class="sub" style="margin-bottom:0;">Здесь хранятся все выбитые скины.</p>
       </div>
-      <!-- НОВАЯ КНОПКА ПРОДАТЬ ВСЁ -->
       <button class="btn-sell-all" id="sellAllBtn">Продать всё</button>
     </div>
     <div class="grid" id="invGrid" style="margin-top:20px"></div>
@@ -157,10 +179,12 @@ h3{margin:0 0 10px;font-size:17px}
   <!-- АПГРЕЙД -->
   <section class="view" id="v-upgrade">
     <h1>Апгрейд скинов</h1>
-    <p class="sub">Улучшите свой скин, выбрав множитель.</p>
+    <p class="sub">Выберите скин из инвентаря или любого доступного предмета CS2.</p>
     <div class="card">
       <div class="upg-slots">
-        <div class="upg-slot" id="upgFrom"><span>Выберите скин<br>в инвентаре</span></div>
+        <div class="upg-slot" id="upgFrom" onclick="openSelectModal()" style="cursor:pointer; transition: 0.2s;" onmouseover="this.style.borderColor='var(--ac)'" onmouseout="this.style.borderColor='var(--bd)'">
+          <span>Нажмите, чтобы выбрать скин</span>
+        </div>
         <div style="font-size:24px;color:var(--gold)">➔</div>
         <div class="upg-slot" id="upgTo"><span>Результат</span></div>
       </div>
@@ -236,7 +260,14 @@ h3{margin:0 0 10px;font-size:17px}
   <div class="row"><button class="btn" id="doLogin">Войти</button><button class="btn ghost" data-close>Отмена</button></div>
 </div></div>
 
-<!-- МОДАЛКА АНИМАЦИИ ОТКРЫТИЯ -->
+<!-- МОДАЛКА ВЫБОРА СКИНА ДЛЯ АПГРЕЙДА -->
+<div class="modal" id="mSelect"><div class="card">
+  <h3>Выберите скин</h3>
+  <div class="select-grid" id="selectGrid"></div>
+  <button class="btn ghost" data-close style="margin-top:15px; width:100%;">Отмена</button>
+</div></div>
+
+<!-- МОДАЛКА АНИМАЦИИ ОТКРЫТИЯ КЕЙСА -->
 <div class="modal" id="mRoll"><div class="card">
   <div style="padding:15px;text-align:center;font-weight:800;font-size:20px;color:var(--gold)">Открытие кейса...</div>
   <div class="roll-container" id="rollContainer">
@@ -247,7 +278,17 @@ h3{margin:0 0 10px;font-size:17px}
   </div>
 </div></div>
 
-<!-- МОДАЛКА ВЫИГРЫША -->
+<!-- МОДАЛКА АНИМАЦИИ АПГРЕЙДА -->
+<div class="modal" id="mUpgSpin"><div class="card">
+  <div style="padding:15px;text-align:center;font-weight:800;font-size:20px;color:var(--gold)">Апгрейд...</div>
+  <div class="upg-spin-container" id="upgSpinContainer">
+    <div class="upg-spin-marker"></div>
+    <div class="upg-spin-strip" id="upgSpinStrip"></div>
+  </div>
+  <div class="upg-result-text" id="upgResultText"></div>
+</div></div>
+
+<!-- МОДАЛКА ВЫИГРЫША КЕЙСА -->
 <div class="modal" id="mWin"><div class="card win-modal-content" style="text-align:center">
   <h2 style="color:var(--gold)">Вы выиграли!</h2>
   <img id="winImg" src="" alt="skin" style="max-height:150px;margin-bottom:15px;filter:drop-shadow(0 0 15px var(--ac))">
@@ -261,54 +302,73 @@ h3{margin:0 0 10px;font-size:17px}
 <script>
 window.onload = function() {
 
-    // --- БАЗА ДАННЫХ КЕЙСОВ ---
+    // --- БАЗА ДАННЫХ КЕЙСОВ (Популярные скины CS2) ---
     var casesData = [
         { id: 1, name: "Мотя Лох", price: 500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_2_light_large.png", items: [
-            { name: "AK-47 | Красная линия", price: 1500, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_cobra_light_large.png" },
-            { name: "USP-S | Поток информации", price: 2200, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_printstream_light_large.png" },
-            { name: "Glock-18 | Блок-18", price: 100, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_glock_cu_glock18_wasteland_rebel_light_large.png" }
+            { name: "AK-47 | Красная линия", price: 1613, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_cobra_light_large.png" },
+            { name: "M4A1-S | Чёрный лотос", price: 234, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_cu_m4a1_s_black_lotus_light_large.png" },
+            { name: "Glock-18 | Блок-18", price: 100, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_glock_cu_glock18_wasteland_rebel_light_large.png" },
+            { name: "USP-S | Корт", price: 528, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_cortex_light_large.png" }
         ]},
         { id: 2, name: "Арсений Даун", price: 1000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_3_light_large.png", items: [
-            { name: "AWP | Азимов", price: 5500, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_asimov_light_large.png" },
-            { name: "Desert Eagle | Поток информации", price: 2100, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_deagle_cu_deagle_printstream_light_large.png" },
-            { name: "P250 | Пепел", price: 50, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_p250_cu_p250_asiimov_light_large.png" }
+            { name: "Desert Eagle | Поток информации", price: 2209, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_deagle_cu_deagle_printstream_light_large.png" },
+            { name: "AWP | Азимов", price: 5278, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_asimov_light_large.png" },
+            { name: "P250 | Азимов", price: 1731, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_p250_cu_p250_asiimov_light_large.png" },
+            { name: "AK-47 | Сланец", price: 231, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_hy_ak47_slate_light_large.png" }
         ]},
         { id: 3, name: "Мотвей Дебил", price: 1500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_spectrum_light_large.png", items: [
-            { name: "AK-47 | Вулкан", price: 7400, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_rubber_light_large.png" },
-            { name: "M4A4 | Темукау", price: 1700, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_cu_m4a4_temukau_light_large.png" },
-            { name: "Negev | Люцифер", price: 100, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_negev_cu_negev_devil_light_large.png" }
+            { name: "AK-47 | Вулкан", price: 6887, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_rubber_light_large.png" },
+            { name: "M4A4 | Темукау", price: 1673, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_cu_m4a4_temukau_light_large.png" },
+            { name: "USP-S | Поток информации", price: 2163, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_printstream_light_large.png" },
+            { name: "AK-47 | Полёт журавля", price: 485, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_crane_light_large.png" }
         ]},
         { id: 4, name: "Ваня Лошара", price: 2000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_4_light_large.png", items: [
-            { name: "AWP | Гунгнир", price: 490000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_gungnir_light_large.png" },
-            { name: "M4A1-S | Градиент", price: 11000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_aa_fade_light_large.png" },
-            { name: "Dual Berettas | Ритуал", price: 20, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_elite_cu_elite_royal_consul_light_large.png" }
+            { name: "AWP | Гунгнир", price: 475193, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_gungnir_light_large.png" },
+            { name: "M4A1-S | Градиент", price: 10466, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_aa_fade_light_large.png" },
+            { name: "AK-47 | Наследство", price: 2041, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_mastery_light_large.png" },
+            { name: "AWP | Поток информации", price: 2012, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_printstream_light_large.png" }
         ]},
         { id: 5, name: "Дима Фигня", price: 2500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_6_light_large.png", items: [
             { name: "G3SG1 | Цифровая сетка", price: 10, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_g3sg1_hy_ddpat_light_large.png" },
             { name: "MP5-SD | Невесомый", price: 40, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_mp5sd_cu_mp5sd_zerohour_light_large.png" },
-            { name: "P2000 | Импульс", price: 5, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_hkp2000_aq_mp7_impulse_light_large.png" }
+            { name: "P2000 | Импульс", price: 5, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_hkp2000_aq_mp7_impulse_light_large.png" },
+            { name: "AK-47 | Ледяной уголь", price: 275, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_hy_ak47_ice_coal_light_large.png" }
         ]},
         { id: 6, name: "Киберспортсмен", price: 3000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_7_light_large.png", items: [
-            { name: "AK-47 | Наследство", price: 1900, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_mastery_light_large.png" },
-            { name: "M4A1-S | Поток информации", price: 10000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_cu_m4a1_s_spot_printstream_light_large.png" },
-            { name: "AWP | Азимов", price: 5500, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_asimov_light_large.png" }
+            { name: "M4A1-S | Поток информации", price: 9312, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_cu_m4a1_s_spot_printstream_light_large.png" },
+            { name: "AK-47 | Кровавый спорт", price: 7903, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_bloodsport_light_large.png" },
+            { name: "Desert Eagle | Код Красный", price: 6558, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_deagle_cu_deagle_codered_light_large.png" },
+            { name: "AWP | Дикий огонь", price: 6193, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_wildfire_light_large.png" }
         ]},
         { id: 7, name: "Коллекционер", price: 3500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_8_light_large.png", items: [
-            { name: "M4A1-S | Градиент", price: 11000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_aa_fade_light_large.png" },
+            { name: "AWP | Удар молнии", price: 32344, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_am_lightning_awp_light_large.png" },
             { name: "AK-47 | Золотая арабеска", price: 800, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_anarchy_light_large.png" },
-            { name: "AWP | Удар молнии", price: 400, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_am_lightning_awp_light_large.png" }
+            { name: "AK-47 | Неоновый гонщик", price: 6456, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_neon_rider_light_large.png" },
+            { name: "USP-S | Подтверждённое убийство", price: 7594, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_kill_confirmed_light_large.png" }
         ]},
         { id: 8, name: "Перчатки и Ножи", price: 4000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_glove_light_large.png", items: [
-            { name: "★ Керамбит | Ржавый", price: 45000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_karambit_cu_karambit_rusty_light_large.png" },
-            { name: "★ Нож-бабочка | Градиент", price: 120000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_large.png" },
-            { name: "★ Водительские перчатки | Королевский змей", price: 7000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_driver_cu_gloves_driver_snake_light_large.png" }
+            { name: "★ Нож-бабочка | Градиент", price: 142600, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_large.png" },
+            { name: "★ Водительские перчатки | Королевский змей", price: 6712, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_driver_cu_gloves_driver_snake_light_large.png" },
+            { name: "★ Перчатки спецназа | Удар тигра", price: 6222, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_specialist_cu_gloves_specialist_tiger_light_large.png" },
+            { name: "★ Спортивные перчатки | Ящик Пандоры", price: 140197, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_sport_cu_gloves_sport_pandora_light_large.png" }
         ]},
         { id: 9, name: "CRYPTO CASE", price: 0.5, isBtc: true, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_9_light_large.png", items: [
-            { name: "AWP | Драконий огонь", price: 150000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_dragon_lore_light_large.png" },
-            { name: "★ Нож-бабочка | Градиент", price: 120000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_large.png" },
-            { name: "AK-47 | Дикий лотос", price: 25000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_wild_lotus_light_large.png" }
+            { name: "AWP | История о драконе", price: 338662, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_dragon_lore_light_large.png" },
+            { name: "AK-47 | Дикий лотос", price: 288122, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_wild_lotus_light_large.png" },
+            { name: "★ Нож-бабочка | Градиент", price: 142600, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_large.png" },
+            { name: "M4A4 | Вой", price: 322067, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_cu_m4a4_howl_light_large.png" }
         ]}
     ];
+
+    // Собираем все уникальные скины из кейсов в один список для апгрейда
+    var ALL_SKINS = [];
+    for(var i=0; i<casesData.length; i++) {
+        for(var j=0; j<casesData[i].items.length; j++) {
+            var exists = false;
+            for(var k=0; k<ALL_SKINS.length; k++) if(ALL_SKINS[k].name === casesData[i].items[j].name) exists = true;
+            if(!exists) ALL_SKINS.push(casesData[i].items[j]);
+        }
+    }
 
     var KEY = "starcase_v1";
     var S = {user:null, bal:0, btc:0, inv:[], clicks:0, tasksDone:0, cases:0, trade:"", day:"", prog:{}, claimed:{}, promo:false};
@@ -316,7 +376,7 @@ window.onload = function() {
     try { var raw = localStorage.getItem(KEY); if(raw) S = Object.assign(S, JSON.parse(raw)); } catch(e) {}
     function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
     function $(i) { return document.getElementById(i); }
-    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0"); }
+    function fmt(n) { return String(Math.round(n*100)/100).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0"); }
 
     var TASKS = [
         {id:"login", t:"Заходи каждый день", d:"Зайдите на сайт", goal:1, rw:50},
@@ -455,7 +515,7 @@ window.onload = function() {
         }, 5200);
     };
 
-    // --- ПРОДАЖА ОДНОГО СКИНА ---
+    // --- ПРОДАЖА ---
     window.sellItem = function(index) {
         var item = S.inv[index];
         S.bal += item.price;
@@ -464,24 +524,12 @@ window.onload = function() {
         toast("Вы продали " + item.name + " за " + fmt(item.price) + " ₽");
     };
 
-    // --- ПРОДАЖА ВСЕХ СКИНОВ ---
     $("sellAllBtn").onclick = function() {
-        if(S.inv.length === 0) {
-            toast("В инвентаре нет предметов!");
-            return;
-        }
-        
-        // Считаем общую сумму
+        if(S.inv.length === 0) { toast("В инвентаре нет предметов!"); return; }
         var totalSum = 0;
-        for(var i=0; i<S.inv.length; i++) {
-            totalSum += S.inv[i].price;
-        }
-        
-        // Спрашиваем подтверждение, чтобы не продать всё случайно
+        for(var i=0; i<S.inv.length; i++) totalSum += S.inv[i].price;
         if(confirm("Вы уверены, что хотите продать ВСЕ предметы (" + S.inv.length + " шт.) за " + fmt(totalSum) + " ₽?")) {
-            S.bal += totalSum; // Начисляем деньги
-            S.inv = []; // Очищаем массив инвентаря
-            save(); render(); // Сохраняем и перерисовываем
+            S.bal += totalSum; S.inv = []; save(); render();
             toast("Вы продали все предметы за " + fmt(totalSum) + " ₽");
         }
     };
@@ -489,8 +537,38 @@ window.onload = function() {
     // --- АПГРЕЙД ---
     var upgItem = null, upgMult = null, upgChance = null;
 
+    window.openSelectModal = function() {
+        var list = S.inv.length > 0 ? S.inv : ALL_SKINS;
+        $("selectGrid").innerHTML = "";
+        
+        for(var i=0; i<list.length; i++) {
+            (function(idx, isInv) {
+                var item = list[idx];
+                var div = document.createElement("div");
+                div.className = "select-item";
+                div.innerHTML = '<img src="' + item.img + '"><div class="select-name">' + item.name + '</div><div class="select-price">' + fmt(item.price) + ' ₽</div>';
+                div.onclick = function() {
+                    if(isInv) selectUpgrade(idx);
+                    else selectUpgradeFromAll(item);
+                    $("mSelect").classList.remove("on");
+                };
+                $("selectGrid").appendChild(div);
+            })(i, S.inv.length > 0);
+        }
+        $("mSelect").classList.add("on");
+    };
+
     window.selectUpgrade = function(index) {
-        upgItem = S.inv[index]; upgItem._invIndex = index;
+        upgItem = S.inv[index]; 
+        upgItem._invIndex = index;
+        upgItem._fromInv = true;
+        $("upgFrom").innerHTML = '<img src="' + upgItem.img + '"><div class="inv-name">' + upgItem.name + '</div><div class="inv-price">' + fmt(upgItem.price) + ' ₽</div>';
+        location.hash = "#upgrade";
+    };
+
+    window.selectUpgradeFromAll = function(item) {
+        upgItem = { name: item.name, price: item.price, img: item.img };
+        upgItem._fromInv = false;
         $("upgFrom").innerHTML = '<img src="' + upgItem.img + '"><div class="inv-name">' + upgItem.name + '</div><div class="inv-price">' + fmt(upgItem.price) + ' ₽</div>';
         location.hash = "#upgrade";
     };
@@ -509,37 +587,85 @@ window.onload = function() {
 
     window.doUpgrade = function() {
         if(!upgItem || !upgMult) { toast("Выберите скин и множитель!"); return; }
-        var roll = Math.random() * 100;
+        
+        var isWin = (Math.random() * 100) <= upgChance;
         var targetPrice = Math.floor(upgItem.price * upgMult);
         
-        if(roll <= upgChance) {
-            S.bal += targetPrice; S.inv.splice(upgItem._invIndex, 1);
-            toast("УСПЕХ! Вы получили " + fmt(targetPrice) + " ₽");
-        } else {
-            S.inv.splice(upgItem._invIndex, 1);
-            toast("Провал! Скин сгорел.");
-        }
+        // Анимация апгрейда
+        $("upgResultText").style.display = "none";
+        $("upgSpinContainer").style.display = "flex";
+        $("mUpgSpin").classList.add("on");
         
-        upgItem = null; upgMult = null;
-        $("upgFrom").innerHTML = '<span>Выберите скин<br>в инвентаре</span>';
-        $("upgTo").innerHTML = '<span>Результат</span>';
-        var btns = document.querySelectorAll('.mult-btn');
-        for(var i=0; i<btns.length; i++) btns[i].classList.remove('on');
-        save(); render();
+        var strip = $("upgSpinStrip");
+        strip.style.transition = "none";
+        strip.style.transform = "translateX(0)";
+        strip.innerHTML = "";
+        
+        // Генерируем 40 элементов. Индекс 35 будет нашим результатом
+        var targetIndex = 35;
+        for(var i=0; i<40; i++) {
+            var isTarget = (i === targetIndex);
+            var itemWin = isTarget ? isWin : (Math.random() > 0.5);
+            var div = document.createElement("div");
+            div.className = "upg-spin-item " + (itemWin ? "win" : "lose");
+            if(itemWin) {
+                div.innerHTML = '<img src="' + upgItem.img + '" style="max-height:60px;"><span>УСПЕХ</span>';
+            } else {
+                div.innerHTML = '<span style="font-size:48px;">💀</span><span>ПРОВАЛ</span>';
+            }
+            strip.appendChild(div);
+        }
+
+        setTimeout(function() {
+            var itemWidth = 150; // 130 + 20 отступ
+            var containerWidth = $("upgSpinContainer").offsetWidth;
+            var targetX = -(targetIndex * itemWidth) + (containerWidth / 2) - (itemWidth / 2);
+            
+            strip.style.transition = "transform 4s cubic-bezier(0.1, 0.8, 0.2, 1)";
+            strip.style.transform = "translateX(" + targetX + "px)";
+        }, 100);
+
+        setTimeout(function() {
+            $("upgSpinContainer").style.display = "none";
+            var resText = $("upgResultText");
+            resText.style.display = "block";
+            
+            if(isWin) {
+                S.bal += targetPrice;
+                resText.innerHTML = '<span style="color:var(--ok)">УСПЕХ!</span><br><span style="font-size:16px;color:var(--tx)">Вы получили ' + fmt(targetPrice) + ' ₽</span>';
+            } else {
+                resText.innerHTML = '<span style="color:var(--red)">ПРОВАЛ!</span><br><span style="font-size:16px;color:var(--tx)">Скин сгорел.</span>';
+            }
+
+            if(upgItem._fromInv) S.inv.splice(upgItem._invIndex, 1);
+            
+            save(); render();
+
+            setTimeout(function() {
+                $("mUpgSpin").classList.remove("on");
+                upgItem = null; upgMult = null;
+                $("upgFrom").innerHTML = '<span>Нажмите, чтобы выбрать скин</span>';
+                $("upgTo").innerHTML = '<span>Результат</span>';
+                var btns = document.querySelectorAll('.mult-btn');
+                for(var i=0; i<btns.length; i++) btns[i].classList.remove('on');
+            }, 2500);
+
+        }, 4200);
     };
 
+    // --- КЛИКЕР ---
     $("bigBtn").addEventListener("click", function(e) {
         rollDay(); S.bal += 10; S.clicks++;
         var tasks = ["c50", "c300", "c1000"];
         for(var i=0; i<tasks.length; i++) S.prog[tasks[i]] = (S.prog[tasks[i]] || 0) + 1;
         save(); render();
-        
         var f = document.createElement("div"); f.className = "fly"; f.textContent = "+10 ₽";
         var x = e.clientX || innerWidth/2, y = e.clientY || innerHeight/2;
         f.style.left = (x - 8 + (Math.random()*40 - 20)) + "px"; f.style.top = (y - 20) + "px";
         document.body.appendChild(f); setTimeout(function(){ f.remove(); }, 800);
     });
 
+    // --- ЗАДАНИЯ ---
     $("taskList").addEventListener("click", function(e) {
         var id = e.target.getAttribute("data-claim"); if(!id) return;
         var k = null;
@@ -549,6 +675,7 @@ window.onload = function() {
         save(); render(); toast("+" + k.rw + " ₽ за задание");
     });
 
+    // --- ПОПОЛНЕНИЕ ---
     var PACKS = [[1000, "99 ₽"], [5000, "449 ₽"], [10000, "849 ₽"], [50000, "3 990 ₽"], [1, "1 BTC (Демо)"]];
     var packHtml = "";
     for(var i=0; i<PACKS.length; i++) {
@@ -568,6 +695,7 @@ window.onload = function() {
     function openTop() { $("mTop").classList.add("on"); }
     $("topup").onclick = openTop; $("topup2").onclick = openTop;
 
+    // --- ВХОД / ПРОФИЛЬ ---
     $("login").onclick = function() { $("mLogin").classList.add("on"); $("nick").focus(); };
     $("doLogin").onclick = function() {
         var n = $("nick").value.trim(); if(!n) { toast("Введите ник"); return; }
@@ -582,10 +710,13 @@ window.onload = function() {
         else toast(S.promo && c === "STAR-50" ? "Код уже использован" : "Код не найден");
     };
 
+    // --- ЗАКРЫТИЕ МОДАЛОК И РОУТИНГ ---
     var closeBtns = document.querySelectorAll("[data-close]");
     for(var i=0; i<closeBtns.length; i++) closeBtns[i].onclick = function() { this.closest(".modal").classList.remove("on"); };
     var modals = document.querySelectorAll(".modal");
-    for(var i=0; i<modals.length; i++) modals[i].addEventListener("click", function(e) { if(e.target === this && this.id !== "mRoll") this.classList.remove("on"); });
+    for(var i=0; i<modals.length; i++) modals[i].addEventListener("click", function(e) { 
+        if(e.target === this && this.id !== "mRoll" && this.id !== "mUpgSpin") this.classList.remove("on"); 
+    });
 
     function route() {
         var v = (location.hash || "#cases").slice(1);
