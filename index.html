@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>StarCase — Апгрейд CS2</title>
+<title>StarCase — Кейсы и Апгрейд CS2</title>
 <style>
 :root{color-scheme:light dark;--bg:#0f0f13;--sf:#18181f;--sf2:#24242d;--tx:#f5f5f7;--mu:#9a9ab0;--ac:#ffcc00;--ac-hover:#e6b800;--gold:#ffcc00;--bd:#2d2d38;--ok:#3ee0a8;--red:#ff5252;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1fb;--sf:#fff;--sf2:#ebe8f7;--tx:#1b1535;--mu:#6a6490;--ac:#7c4dff;--ac-hover:#6b3be0;--gold:#b9770e;--bd:#d9d4ee;--ok:#12906a;--red:#e74c3c}}
@@ -34,7 +34,7 @@ h1{font-size:28px;margin:0 0 4px}
 .card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .clicker{text-align:center;padding:36px 20px}
-.big{width:210px;height:210px;border-radius:50%;border:0;font-size:64px;color:#fff;background:radial-gradient(circle at 35% 30%,var(--ac),var(--ac-hover) 60%,#3b1d9a);box-shadow:0 0 0 10px var(--sf2),0 12px 40px rgba(124,77,255,.45);transition:transform .08s;user-select:none;-webkit-tap-highlight-color:transparent}
+.big{width:210px;height:210px;border-radius:50%;border:0;font-size:64px;color:#000;background:radial-gradient(circle at 35% 30%,var(--ac),var(--ac-hover) 60%,#b38f00);box-shadow:0 0 0 10px var(--sf2),0 12px 40px rgba(255,204,0,.45);transition:transform .08s;user-select:none;-webkit-tap-highlight-color:transparent}
 .big:active{transform:scale(.94)}
 .hint{color:var(--mu);margin-top:22px}
 .fly{position:fixed;pointer-events:none;font-weight:800;color:var(--gold);animation:fly .8s ease-out forwards;z-index:20}
@@ -64,16 +64,14 @@ h3{margin:0 0 10px;font-size:17px}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--sf);border:1px solid var(--ac);padding:10px 18px;border-radius:12px;z-index:40;display:none}
 .note{font-size:13px;color:var(--mu);margin-top:10px}
 
-/* --- СТИЛИ ДЛЯ КЕЙСОВ (оставлены для совместимости, если нужны) --- */
+/* --- КЕЙСЫ --- */
 .case-card{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:15px;text-align:center;display:flex;flex-direction:column;transition:transform .2s;cursor:pointer}
 .case-card:hover{transform:translateY(-4px);border-color:var(--ac);box-shadow:0 10px 20px rgba(0,0,0,0.2)}
 .case-img-container{width:100%;height:130px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
 .case-img-container img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 5px 10px rgba(0,0,0,0.4))}
-.case-card.btc-card{border-color:#f7931a}
 .case-name{font-weight:700;margin-bottom:5px;font-size:15px}
 .case-price{color:var(--gold);font-weight:800;font-size:16px;margin-bottom:12px}
 .btn-buy{background:var(--ac);color:#000;border:none;padding:8px;border-radius:8px;font-weight:bold;width:100%;margin-top:auto}
-.btn-buy.btc-buy{background:#f7931a}
 
 /* --- ИНВЕНТАРЬ --- */
 .inv-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
@@ -88,185 +86,64 @@ h3{margin:0 0 10px;font-size:17px}
 .btn-upg{background:var(--ac);color:#000;border:none;padding:6px 10px;border-radius:6px;width:100%;font-size:12px;font-weight:bold}
 .btn-upg:hover{background:var(--ac-hover)}
 
-/* --- НОВЫЙ ИНТЕРФЕЙС АПГРЕЙДА (КАК НА UPGRADER.BEST) --- */
-.upgrader-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr 320px;
-    gap: 20px;
-    align-items: start;
-}
-@media (max-width: 1024px) {
-    .upgrader-layout { grid-template-columns: 1fr; }
-}
+/* --- НОВЫЙ ИНТЕРФЕЙС АПГРЕЙДА --- */
+.upgrader-layout { display: grid; grid-template-columns: 280px 1fr 320px; gap: 20px; align-items: start; }
+@media (max-width: 1024px) { .upgrader-layout { grid-template-columns: 1fr; } }
 
-/* Левая колонка: Инвентарь */
-.upg-inventory {
-    background: var(--sf);
-    border: 1px solid var(--bd);
-    border-radius: 16px;
-    padding: 15px;
-    max-height: 600px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+/* Левая колонка */
+.upg-inventory { background: var(--sf); border: 1px solid var(--bd); border-radius: 16px; padding: 15px; max-height: 600px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
 .upg-inventory h4 { margin: 0 0 10px; font-size: 16px; color: var(--mu); }
-.upg-inv-item {
-    background: var(--sf2);
-    border: 1px solid var(--bd);
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.upg-inv-item:hover, .upg-inv-item.selected {
-    border-color: var(--ac);
-    background: rgba(255, 204, 0, 0.1);
-}
+.upg-inv-item { background: var(--sf2); border: 1px solid var(--bd); border-radius: 8px; padding: 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+.upg-inv-item:hover, .upg-inv-item.selected { border-color: var(--ac); background: rgba(255, 204, 0, 0.1); }
 .upg-inv-item img { width: 50px; height: 50px; object-fit: contain; }
-.upg-inv-item-info { flex: 1; }
+.upg-inv-item-info { flex: 1; overflow: hidden; }
 .upg-inv-item-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .upg-inv-item-price { font-size: 12px; color: var(--gold); font-weight: 700; }
 
-/* Центральная колонка: Круг и кнопка */
-.upg-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    background: var(--sf);
-    border: 1px solid var(--bd);
-    border-radius: 16px;
-}
-.upg-circle-container {
-    position: relative;
-    width: 260px;
-    height: 260px;
-}
-.upg-circle-svg {
-    transform: rotate(-90deg);
-    width: 100%;
-    height: 100%;
-}
-.upg-circle-bg { fill: none; stroke: var(--sf2); stroke-width: 12; }
-.upg-circle-progress { fill: none; stroke: var(--ac); stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
-.upg-circle-text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.upg-circle-chance { font-size: 36px; font-weight: 800; color: var(--ac); }
-.upg-circle-label { font-size: 12px; color: var(--mu); text-transform: uppercase; letter-spacing: 1px; }
-.upg-circle-icon { font-size: 48px; margin-bottom: 10px; }
-
-.upg-slots-center {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: var(--sf2);
-    padding: 10px 20px;
-    border-radius: 12px;
-    border: 1px solid var(--bd);
-}
-.upg-slot-mini {
-    width: 80px;
-    height: 80px;
-    border: 2px dashed var(--bd);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 10px;
-    color: var(--mu);
-    cursor: pointer;
-    transition: 0.2s;
-}
-.upg-slot-mini:hover { border-color: var(--ac); }
-.upg-slot-mini img { max-height: 50px; max-width: 60px; object-fit: contain; }
+/* Центральная колонка */
+.upg-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 20px; background: var(--sf); border: 1px solid var(--bd); border-radius: 16px; }
+.upg-slots-center { display: flex; align-items: center; gap: 15px; background: var(--sf2); padding: 10px 20px; border-radius: 12px; border: 1px solid var(--bd); }
+.upg-slot-mini { width: 80px; height: 80px; border: 2px dashed var(--bd); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 10px; color: var(--mu); overflow: hidden;}
+.upg-slot-mini img { max-height: 45px; max-width: 60px; object-fit: contain; }
 .upg-slot-arrow { font-size: 24px; color: var(--gold); }
 
-/* Правая колонка: Выбор цели */
-.upg-target {
-    background: var(--sf);
-    border: 1px solid var(--bd);
-    border-radius: 16px;
-    padding: 15px;
-    max-height: 600px;
-    display: flex;
-    flex-direction: column;
-}
-.upg-target h4 { margin: 0 0 10px; font-size: 16px; color: var(--mu); }
-.upg-target-search { width: 100%; padding: 8px 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--bd); background: var(--sf2); color: var(--tx); }
-.upg-target-list {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
-}
-.upg-target-item {
-    background: var(--sf2);
-    border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: 0.1s;
-}
-.upg-target-item:hover { border-color: var(--bd); background: var(--sf); }
-.upg-target-item.selected { border-color: var(--ac); background: rgba(255, 204, 0, 0.05); }
-.upg-target-item img { width: 40px; height: 40px; object-fit: contain; }
-.upg-target-item-info { flex: 1; }
-.upg-target-item-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.upg-target-item-price { font-size: 11px; color: var(--gold); font-weight: 700; }
+.upg-circle-container { position: relative; width: 260px; height: 260px; margin: 10px 0; }
+.upg-circle-svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.upg-circle-bg { fill: none; stroke: var(--sf2); stroke-width: 12; }
+.upg-circle-progress { fill: none; stroke: var(--ac); stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+.upg-circle-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.upg-circle-icon { font-size: 48px; margin-bottom: 10px; color: var(--ac); }
+.upg-circle-chance { font-size: 36px; font-weight: 800; color: var(--ac); }
+.upg-circle-label { font-size: 12px; color: var(--mu); text-transform: uppercase; letter-spacing: 1px; }
 
-/* Кнопка улучшения */
-.btn-upgrade-big {
-    background: var(--ac);
-    color: #000;
-    border: none;
-    padding: 18px 40px;
-    border-radius: 12px;
-    font-size: 20px;
-    font-weight: 800;
-    cursor: pointer;
-    width: 100%;
-    max-width: 300px;
-    transition: 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+.btn-upgrade-big { background: var(--ac); color: #000; border: none; padding: 18px 40px; border-radius: 12px; font-size: 20px; font-weight: 800; cursor: pointer; width: 100%; max-width: 300px; transition: 0.2s; text-transform: uppercase; letter-spacing: 1px; }
 .btn-upgrade-big:hover { background: var(--ac-hover); }
 .btn-upgrade-big:disabled { background: var(--sf2); color: var(--mu); cursor: not-allowed; }
 
-/* Модалка рулетки апгрейда */
-#mUpgRoll .card { max-width: 800px; padding: 0; overflow: hidden; background: var(--bg); text-align: center; }
-.upg-roll-container { position: relative; height: 180px; background: var(--sf2); border-top: 2px solid var(--bd); border-bottom: 2px solid var(--bd); display: flex; align-items: center; overflow: hidden; margin-top: 15px; }
-.upg-roll-strip { display: flex; align-items: center; position: absolute; left: 0; transition: transform 5s cubic-bezier(0.05, 0.9, 0.1, 1); will-change: transform; }
-.upg-roll-item { width: 130px; height: 140px; flex-shrink: 0; margin: 0 10px; background: var(--sf); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid var(--bd); }
-.upg-roll-item img { max-height: 80px; max-width: 100px; object-fit: contain; }
-.upg-roll-item .roll-name { font-size: 10px; text-align: center; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; padding: 0 5px; }
-.upg-roll-marker { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: var(--ac); transform: translateX(-50%); z-index: 10; box-shadow: 0 0 15px var(--ac); }
-.upg-roll-fade { position: absolute; top: 0; bottom: 0; width: 150px; z-index: 5; pointer-events: none; }
-.upg-roll-fade.left { left: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 100%); }
-.upg-roll-fade.right { right: 0; background: linear-gradient(-90deg, var(--bg) 0%, transparent 100%); }
+/* Правая колонка */
+.upg-target { background: var(--sf); border: 1px solid var(--bd); border-radius: 16px; padding: 15px; max-height: 600px; display: flex; flex-direction: column; }
+.upg-target h4 { margin: 0 0 10px; font-size: 16px; color: var(--mu); }
+.upg-target-search { width: 100%; padding: 8px 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--bd); background: var(--sf2); color: var(--tx); }
+.upg-target-list { overflow-y: auto; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.upg-target-item { background: var(--sf2); border: 1px solid transparent; border-radius: 6px; padding: 8px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.1s; }
+.upg-target-item:hover { border-color: var(--bd); background: var(--sf); }
+.upg-target-item.selected { border-color: var(--ac); background: rgba(255, 204, 0, 0.05); }
+.upg-target-item img { width: 40px; height: 40px; object-fit: contain; }
+.upg-target-item-info { flex: 1; overflow: hidden; }
+.upg-target-item-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.upg-target-item-price { font-size: 11px; color: var(--gold); font-weight: 700; }
 
-/* Модалка результата */
-#mUpgWin .card { text-align: center; }
+/* --- АНИМАЦИИ (РУЛЕТКИ) --- */
+.roll-container { position: relative; height: 180px; background: var(--sf2); border-top: 2px solid var(--bd); border-bottom: 2px solid var(--bd); display: flex; align-items: center; overflow: hidden; margin-top: 15px; }
+.roll-strip { display: flex; align-items: center; position: absolute; left: 0; transition: transform 5s cubic-bezier(0.05, 0.9, 0.1, 1); will-change: transform; }
+.roll-item { width: 130px; height: 140px; flex-shrink: 0; margin: 0 10px; background: var(--sf); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid var(--bd); }
+.roll-item img { max-height: 80px; max-width: 100px; object-fit: contain; }
+.roll-item .roll-name { font-size: 10px; text-align: center; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; padding: 0 5px; }
+.roll-marker { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: var(--ac); transform: translateX(-50%); z-index: 10; box-shadow: 0 0 15px var(--ac); }
+.roll-fade { position: absolute; top: 0; bottom: 0; width: 150px; z-index: 5; pointer-events: none; }
+.roll-fade.left { left: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 100%); }
+.roll-fade.right { right: 0; background: linear-gradient(-90deg, var(--bg) 0%, transparent 100%); }
+#mRoll .card, #mUpgRoll .card { max-width: 800px; padding: 0; overflow: hidden; background: var(--bg); text-align: center; }
 </style>
 </head>
 <body>
@@ -275,7 +152,7 @@ h3{margin:0 0 10px;font-size:17px}
   <nav id="nav">
     <a href="#cases" data-v="cases">Кейсы</a>
     <a href="#inventory" data-v="inventory">Инвентарь</a>
-    <a href="#upgrade" data-v="upgrade" class="on">Апгрейд</a>
+    <a href="#upgrade" data-v="upgrade">Апгрейд</a>
     <a href="#click" data-v="click">Кликер</a>
     <a href="#tasks" data-v="tasks">Задания</a>
     <a href="#profile" data-v="profile">Профиль</a>
@@ -292,7 +169,7 @@ h3{margin:0 0 10px;font-size:17px}
 </header>
 
 <main>
-  <!-- КЕЙСЫ (оставлены) -->
+  <!-- КЕЙСЫ -->
   <section class="view" id="v-cases">
     <h1>Кейсы CS2</h1>
     <p class="sub">Выберите кейс и испытайте удачу.</p>
@@ -311,28 +188,24 @@ h3{margin:0 0 10px;font-size:17px}
     <div class="grid" id="invGrid" style="margin-top:20px"></div>
   </section>
 
-  <!-- НОВЫЙ АПГРЕЙД (как на Upgrader.best) -->
-  <section class="view on" id="v-upgrade">
+  <!-- АПГРЕЙД (Интерфейс Upgrader.best) -->
+  <section class="view" id="v-upgrade">
     <h1>Апгрейд скинов</h1>
-    <p class="sub">Выберите свой предмет слева и цель справа, чтобы улучшить скин.</p>
+    <p class="sub">Выберите свой предмет слева и цель справа.</p>
     
     <div class="upgrader-layout">
       <!-- Левая колонка: Инвентарь -->
       <div class="upg-inventory" id="upgInvList">
         <h4>Мой инвентарь</h4>
-        <!-- Сюда рендерятся предметы игрока -->
+        <!-- Рендерится через JS -->
       </div>
 
       <!-- Центральная колонка: Круг и кнопка -->
       <div class="upg-center">
         <div class="upg-slots-center">
-          <div class="upg-slot-mini" id="upgSourceSlot">
-            <span>Выбрать<br>скин</span>
-          </div>
+          <div class="upg-slot-mini" id="upgSourceSlot"><span>Выбрать<br>скин</span></div>
           <div class="upg-slot-arrow">➔</div>
-          <div class="upg-slot-mini" id="upgTargetSlot">
-            <span>Выбрать<br>цель</span>
-          </div>
+          <div class="upg-slot-mini" id="upgTargetSlot"><span>Выбрать<br>цель</span></div>
         </div>
 
         <div class="upg-circle-container">
@@ -347,7 +220,7 @@ h3{margin:0 0 10px;font-size:17px}
           </div>
         </div>
 
-        <button class="btn-upgrade-big" id="doUpgradeBtn" onclick="doUpgrade()">Улучшить</button>
+        <button class="btn-upgrade-big" id="doUpgradeBtn" onclick="doUpgrade()" disabled>Улучшить</button>
       </div>
 
       <!-- Правая колонка: Выбор цели -->
@@ -355,7 +228,7 @@ h3{margin:0 0 10px;font-size:17px}
         <h4>Выберите предмет для апгрейда</h4>
         <input type="text" class="upg-target-search" id="targetSearch" placeholder="Поиск скина..." oninput="filterTargets()">
         <div class="upg-target-list" id="upgTargetList">
-          <!-- Сюда рендерятся все доступные скины -->
+          <!-- Рендерится через JS -->
         </div>
       </div>
     </div>
@@ -403,7 +276,7 @@ h3{margin:0 0 10px;font-size:17px}
   </section>
 </main>
 
-<!-- МОДАЛКА ПОПОЛНЕНИЯ -->
+<!-- МОДАЛКИ -->
 <div class="modal" id="mTop"><div class="card">
   <h3>Пополнение баланса</h3>
   <p class="note" style="margin-top:0">Выберите пакет для демо-пополнения.</p>
@@ -411,7 +284,6 @@ h3{margin:0 0 10px;font-size:17px}
   <button class="btn ghost" data-close>Закрыть</button>
 </div></div>
 
-<!-- МОДАЛКА ВХОДА -->
 <div class="modal" id="mLogin"><div class="card">
   <h3>Вход через Steam</h3>
   <p class="note" style="margin-top:0">Демо-вход. Введите ник для проверки.</p>
@@ -419,18 +291,38 @@ h3{margin:0 0 10px;font-size:17px}
   <div class="row"><button class="btn" id="doLogin">Войти</button><button class="btn ghost" data-close>Отмена</button></div>
 </div></div>
 
-<!-- МОДАЛКА АНИМАЦИИ АПГРЕЙДА (РУЛЕТКА) -->
-<div class="modal" id="mUpgRoll"><div class="card">
-  <div style="padding:15px;text-align:center;font-weight:800;font-size:20px;color:var(--gold)">Улучшение...</div>
-  <div class="upg-roll-container" id="upgRollContainer">
-    <div class="upg-roll-fade left"></div>
-    <div class="upg-roll-marker"></div>
-    <div class="upg-roll-fade right"></div>
-    <div class="upg-roll-strip" id="upgRollStrip"></div>
+<!-- АНИМАЦИЯ ОТКРЫТИЯ КЕЙСА -->
+<div class="modal" id="mRoll"><div class="card">
+  <div style="padding:15px;text-align:center;font-weight:800;font-size:20px;color:var(--gold)">Открытие кейса...</div>
+  <div class="roll-container" id="rollContainer">
+    <div class="roll-fade left"></div>
+    <div class="roll-marker"></div>
+    <div class="roll-fade right"></div>
+    <div class="roll-strip" id="rollStrip"></div>
   </div>
 </div></div>
 
-<!-- МОДАЛКА РЕЗУЛЬТАТА АПГРЕЙДА -->
+<!-- АНИМАЦИЯ АПГРЕЙДА -->
+<div class="modal" id="mUpgRoll"><div class="card">
+  <div style="padding:15px;text-align:center;font-weight:800;font-size:20px;color:var(--gold)">Улучшение...</div>
+  <div class="roll-container" id="upgRollContainer">
+    <div class="roll-fade left"></div>
+    <div class="roll-marker"></div>
+    <div class="roll-fade right"></div>
+    <div class="roll-strip" id="upgRollStrip"></div>
+  </div>
+</div></div>
+
+<!-- ВЫИГРЫШ КЕЙСА -->
+<div class="modal" id="mWin"><div class="card win-modal-content" style="text-align:center">
+  <h2 style="color:var(--gold)">Вы выиграли!</h2>
+  <img id="winImg" src="" alt="skin" style="max-height:150px;margin-bottom:15px;filter:drop-shadow(0 0 15px var(--ac))">
+  <h3 id="winName" style="margin-bottom:5px"></h3>
+  <p style="font-size:20px;color:var(--ok);font-weight:bold;margin-bottom:15px" id="winPrice"></p>
+  <button class="btn" data-close style="width:100%">Забрать в инвентарь</button>
+</div></div>
+
+<!-- РЕЗУЛЬТАТ АПГРЕЙДА -->
 <div class="modal" id="mUpgWin"><div class="card" style="text-align:center">
   <h2 id="upgWinTitle" style="margin-bottom:15px;"></h2>
   <img id="upgWinImg" src="" alt="skin" style="max-height:150px;margin-bottom:15px;filter:drop-shadow(0 0 15px var(--ac))">
@@ -444,8 +336,7 @@ h3{margin:0 0 10px;font-size:17px}
 <script>
 window.onload = function() {
 
-    // --- ОГРОМНАЯ БАЗА СКИНОВ (Более 150 предметов с реальными ценами) ---
-    // Цены указаны в рублях (приблизительно по курсу Steam Market на момент разработки)
+    // --- 1. БАЗА СКИНОВ (Очень много предметов) ---
     var ALL_SKINS = [
         // Винтовки
         { name: "AK-47 | Красная линия", price: 1613, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_cobra_light_large.png" },
@@ -458,21 +349,17 @@ window.onload = function() {
         { name: "AK-47 | Сланец", price: 231, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_hy_ak47_slate_light_large.png" },
         { name: "AK-47 | Ледяной уголь", price: 275, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_hy_ak47_ice_coal_light_large.png" },
         { name: "AK-47 | Дикий лотос", price: 288122, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ak47_cu_ak47_wild_lotus_light_large.png" },
-        
         { name: "M4A1-S | Поток информации", price: 9312, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_cu_m4a1_s_spot_printstream_light_large.png" },
         { name: "M4A1-S | Градиент", price: 10466, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_aa_fade_light_large.png" },
         { name: "M4A1-S | Чёрный лотос", price: 234, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_silencer_cu_m4a1_s_black_lotus_light_large.png" },
-        { name: "M4A1-S | Подтверждённое убийство", price: 7594, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_kill_confirmed_light_large.png" }, // Примечание: изображение от USP, но для примера сгодится, или можно заменить
         { name: "M4A4 | Темукау", price: 1673, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_cu_m4a4_temukau_light_large.png" },
         { name: "M4A4 | Вой", price: 322067, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_m4a1_cu_m4a4_howl_light_large.png" },
-        
         { name: "AWP | Азимов", price: 5278, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_asimov_light_large.png" },
         { name: "AWP | Гунгнир", price: 475193, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_gungnir_light_large.png" },
         { name: "AWP | Поток информации", price: 2012, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_printstream_light_large.png" },
         { name: "AWP | Дикий огонь", price: 6193, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_wildfire_light_large.png" },
         { name: "AWP | Удар молнии", price: 32344, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_am_lightning_awp_light_large.png" },
         { name: "AWP | История о драконе", price: 338662, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_awp_cu_awp_dragon_lore_light_large.png" },
-
         // Пистолеты
         { name: "Desert Eagle | Поток информации", price: 2209, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_deagle_cu_deagle_printstream_light_large.png" },
         { name: "Desert Eagle | Код Красный", price: 6558, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_deagle_cu_deagle_codered_light_large.png" },
@@ -481,15 +368,13 @@ window.onload = function() {
         { name: "USP-S | Подтверждённое убийство", price: 7594, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_usp_silencer_cu_usp_kill_confirmed_light_large.png" },
         { name: "Glock-18 | Блок-18", price: 100, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_glock_cu_glock18_wasteland_rebel_light_large.png" },
         { name: "P250 | Азимов", price: 1731, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_p250_cu_p250_asiimov_light_large.png" },
-        
         // Ножи и Перчатки
         { name: "★ Нож-бабочка | Градиент", price: 142600, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_butterfly_aa_fade_light_large.png" },
         { name: "★ Водительские перчатки | Королевский змей", price: 6712, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_driver_cu_gloves_driver_snake_light_large.png" },
         { name: "★ Перчатки спецназа | Удар тигра", price: 6222, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_specialist_cu_gloves_specialist_tiger_light_large.png" },
         { name: "★ Спортивные перчатки | Ящик Пандоры", price: 140197, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_gloves_sport_cu_gloves_sport_pandora_light_large.png" },
         { name: "★ Керамбит | Ржавый", price: 45000, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_knife_karambit_cu_karambit_rusty_light_large.png" },
-        
-        // Снайперские винтовки и другое
+        // Другое
         { name: "SSG 08 | Кровавая паутина", price: 150, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_ssg08_cu_ssg08_blood_in_the_water_light_large.png" },
         { name: "G3SG1 | Цифровая сетка", price: 10, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_g3sg1_hy_ddpat_light_large.png" },
         { name: "MP5-SD | Невесомый", price: 40, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_mp5sd_cu_mp5sd_zerohour_light_large.png" },
@@ -498,31 +383,31 @@ window.onload = function() {
         { name: "Dual Berettas | Ритуал", price: 20, img: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/econ/default_generated/weapon_elite_cu_elite_royal_consul_light_large.png" }
     ];
 
-    // Дополняем базу дубликатами с другими ценами для реалистичности
+    // Дублируем скины с другими степенями износа для объема (как на реальных сайтах)
     var tempSkins = [];
     for (var i = 0; i < ALL_SKINS.length; i++) {
         tempSkins.push(ALL_SKINS[i]);
-        // Добавляем "изношенные" версии с меньшей ценой
-        tempSkins.push({ 
-            name: ALL_SKINS[i].name + " (Field-Tested)", 
-            price: Math.floor(ALL_SKINS[i].price * 0.75), 
-            img: ALL_SKINS[i].img 
-        });
-        tempSkins.push({ 
-            name: ALL_SKINS[i].name + " (Well-Worn)", 
-            price: Math.floor(ALL_SKINS[i].price * 0.6), 
-            img: ALL_SKINS[i].img 
-        });
+        tempSkins.push({ name: ALL_SKINS[i].name + " (MW)", price: Math.floor(ALL_SKINS[i].price * 0.85), img: ALL_SKINS[i].img });
+        tempSkins.push({ name: ALL_SKINS[i].name + " (FT)", price: Math.floor(ALL_SKINS[i].price * 0.70), img: ALL_SKINS[i].img });
+        tempSkins.push({ name: ALL_SKINS[i].name + " (WW)", price: Math.floor(ALL_SKINS[i].price * 0.55), img: ALL_SKINS[i].img });
     }
-    ALL_SKINS = tempSkins.sort(() => Math.random() - 0.5); // Перемешиваем
+    // Сортируем по цене
+    ALL_SKINS = tempSkins.sort((a, b) => a.price - b.price);
 
-    // Кейсы для вкладки "Кейсы" (можно оставить старые)
+    // Кейсы
     var casesData = [
-        { id: 1, name: "Мотя Лох", price: 500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_2_light_large.png", items: [ ALL_SKINS[0], ALL_SKINS[1], ALL_SKINS[2] ] },
-        // ... можно добавить остальные кейсы, но для апгрейдера это не критично
+        { id: 1, name: "Мотя Лох", price: 500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_2_light_large.png", items: [ ALL_SKINS[50], ALL_SKINS[80], ALL_SKINS[120] ] },
+        { id: 2, name: "Арсений Даун", price: 1000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_3_light_large.png", items: [ ALL_SKINS[60], ALL_SKINS[90], ALL_SKINS[130] ] },
+        { id: 3, name: "Мотвей Дебил", price: 1500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_spectrum_light_large.png", items: [ ALL_SKINS[70], ALL_SKINS[100], ALL_SKINS[140] ] },
+        { id: 4, name: "Ваня Лошара", price: 2000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_4_light_large.png", items: [ ALL_SKINS[80], ALL_SKINS[110], ALL_SKINS[150] ] },
+        { id: 5, name: "Дима Фигня", price: 2500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_6_light_large.png", items: [ ALL_SKINS[10], ALL_SKINS[30], ALL_SKINS[50] ] },
+        { id: 6, name: "Киберспортсмен", price: 3000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_7_light_large.png", items: [ ALL_SKINS[90], ALL_SKINS[120], ALL_SKINS[160] ] },
+        { id: 7, name: "Коллекционер", price: 3500, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_8_light_large.png", items: [ ALL_SKINS[100], ALL_SKINS[130], ALL_SKINS[170] ] },
+        { id: 8, name: "Перчатки и Ножи", price: 4000, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_glove_light_large.png", items: [ ALL_SKINS[150], ALL_SKINS[160], ALL_SKINS[170] ] },
+        { id: 9, name: "CRYPTO CASE", price: 0.5, isBtc: true, caseImg: "https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/images/crates/csgo_weapon_case_9_light_large.png", items: [ ALL_SKINS[170], ALL_SKINS[171], ALL_SKINS[172] ] }
     ];
 
-    // --- СОСТОЯНИЕ ---
+    // --- 2. СОСТОЯНИЕ И СОХРАНЕНИЕ ---
     var KEY = "starcase_v1";
     var S = {user:null, bal:0, btc:0, inv:[], clicks:0, tasksDone:0, cases:0, trade:"", day:"", prog:{}, claimed:{}, promo:false};
     
@@ -531,13 +416,172 @@ window.onload = function() {
     function $(i) { return document.getElementById(i); }
     function fmt(n) { return String(Math.round(n*100)/100).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0"); }
 
-    // ... (Остальные функции: render, renderInventory, и т.д. - можно оставить из предыдущего кода, они не меняются)
+    var TASKS = [
+        {id:"login", t:"Заходи каждый день", d:"Зайдите на сайт", goal:1, rw:50},
+        {id:"c50", t:"Разминка кликера", d:"Сделайте 50 кликов", goal:50, rw:100},
+        {id:"c300", t:"Звёздный марафон", d:"Сделайте 300 кликов", goal:300, rw:400},
+        {id:"c1000", t:"Мастер клика", d:"Сделайте 1000 кликов", goal:1000, rw:1500}
+    ];
+    
+    function today() { return new Date().toISOString().slice(0,10); }
+    function rollDay() {
+        if(S.day !== today()) { S.day = today(); S.prog = {login:1}; S.claimed = {}; save(); }
+    }
+    rollDay();
 
-    // --- НОВАЯ ЛОГИКА АПГРЕЙДА ---
-    var selectedSourceItem = null; // Скин из инвентаря
-    var selectedTargetSkin = null; // Целевой скин
+    function avatar(n) {
+        var c = (n || "?").charAt(0).toUpperCase();
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffcc00"/><stop offset="1" stop-color="#ff9900"/></linearGradient></defs><rect width="80" height="80" fill="url(#g)"/><text x="40" y="53" font-size="38" font-weight="700" text-anchor="middle" fill="#000" font-family="sans-serif">' + c + '</text></svg>';
+        return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+    }
 
-    // Рендер инвентаря в левой колонке апгрейдера
+    function toast(m) {
+        var t = $("toast"); t.textContent = m; t.style.display = "block";
+        clearTimeout(toast.h); toast.h = setTimeout(function(){ t.style.display = "none"; }, 2200);
+    }
+
+    // --- 3. РЕНДЕР ВСЕГО ---
+    function render() {
+        $("balTop").textContent = fmt(S.bal); $("balP").textContent = fmt(S.bal);
+        $("btcBalTop").textContent = S.btc.toFixed(2); $("btcBalP").textContent = S.btc.toFixed(2);
+        $("clicks").textContent = fmt(S.clicks); $("stClicks").textContent = fmt(S.clicks);
+        $("stTasks").textContent = S.tasksDone; $("stCases").textContent = S.cases;
+        
+        var u = S.user;
+        $("login").style.display = u ? "none" : "";
+        $("userBox").style.display = u ? "flex" : "none";
+        var name = u || "Гость", a = avatar(name);
+        $("nameTop").textContent = name; $("avaTop").src = a; $("avaP").src = a; $("nameP").textContent = name;
+        $("logout").style.display = u ? "" : "none"; $("trade").value = S.trade;
+        
+        renderTasks(); renderCases(); renderInventory();
+    }
+
+    function renderTasks() {
+        var h = "";
+        for(var i=0; i<TASKS.length; i++) {
+            var k = TASKS[i];
+            var p = Math.min(S.prog[k.id] || 0, k.goal), done = p >= k.goal, cl = S.claimed[k.id];
+            h += '<div class="card task"><div class="in"><b>' + k.t + '</b><div class="note" style="margin:0">' + k.d + ' · ' + p + '/' + k.goal + '</div><div class="bar"><i style="width:' + (p/k.goal*100) + '%"></i></div></div><div class="rw">+' + k.rw + ' ₽</div><button class="btn" data-claim="' + k.id + '"' + ((!done || cl) ? ' disabled' : '') + '>' + (cl ? 'Получено' : 'Забрать') + '</button></div>';
+        }
+        $("taskList").innerHTML = h;
+    }
+
+    function renderCases() {
+        var h = "";
+        for(var i=0; i<casesData.length; i++) {
+            var c = casesData[i];
+            h += '<div class="case-card" onclick="openCase(' + c.id + ')">';
+            h += '<div class="case-img-container"><img src="' + c.caseImg + '"></div>';
+            h += '<div class="case-name">' + c.name + '</div>';
+            h += '<div class="case-price">' + (c.isBtc ? c.price.toFixed(2) + ' ₿' : fmt(c.price) + ' ₽') + '</div>';
+            h += '<button class="btn-buy">Открыть</button>';
+            h += '</div>';
+        }
+        $("caseGrid").innerHTML = h;
+    }
+
+    function renderInventory() {
+        var h = "";
+        if(S.inv.length === 0) {
+            h = '<div class="card empty" style="grid-column:1/-1">Инвентарь пуст. Откройте кейс!</div>';
+        } else {
+            for(var i=0; i<S.inv.length; i++) {
+                var item = S.inv[i];
+                h += '<div class="inv-item">';
+                h += '<img src="' + item.img + '" alt="skin">';
+                h += '<div class="inv-name" title="' + item.name + '">' + item.name + '</div>';
+                h += '<div class="inv-price">' + fmt(item.price) + ' ₽</div>';
+                h += '<button class="btn-sell" onclick="sellItem(' + i + ')">Продать</button>';
+                h += '<button class="btn-upg" onclick="goToUpgrade(' + i + ')">В апгрейд</button>';
+                h += '</div>';
+            }
+        }
+        $("invGrid").innerHTML = h;
+        renderUpgInventory(); // Обновляем левую колонку в апгрейдере
+    }
+
+    // --- 4. ОТКРЫТИЕ КЕЙСА ---
+    window.openCase = function(id) {
+        var c = null;
+        for(var i=0; i<casesData.length; i++) if(casesData[i].id === id) c = casesData[i];
+        if(!c) return;
+        
+        if(c.isBtc) {
+            if(S.btc < c.price) { toast("Недостаточно биткоинов!"); return; }
+            S.btc -= c.price;
+        } else {
+            if(S.bal < c.price) { toast("Недостаточно средств!"); return; }
+            S.bal -= c.price;
+        }
+
+        var winItem = c.items[Math.floor(Math.random() * c.items.length)];
+        S.inv.push(winItem);
+        S.cases++;
+        save(); render();
+
+        var strip = $("rollStrip");
+        strip.style.transition = "none";
+        strip.style.transform = "translateX(0)";
+        var html = "";
+        
+        for(var j=0; j<60; j++) {
+            var itemToShow = (j === 55) ? winItem : c.items[Math.floor(Math.random() * c.items.length)];
+            html += '<div class="roll-item"><img src="' + itemToShow.img + '"><div class="roll-name">' + itemToShow.name + '</div></div>';
+        }
+        strip.innerHTML = html;
+
+        $("mWin").classList.remove("on");
+        $("mRoll").classList.add("on");
+
+        setTimeout(function() {
+            var itemWidth = 150; 
+            var containerWidth = $("rollContainer").offsetWidth;
+            var targetX = -(55 * itemWidth) + (containerWidth / 2) - (itemWidth / 2) - (Math.random() * 100 - 50);
+            strip.style.transition = "transform 5s cubic-bezier(0.05, 0.9, 0.1, 1)";
+            strip.style.transform = "translateX(" + targetX + "px)";
+        }, 100);
+
+        setTimeout(function() {
+            $("mRoll").classList.remove("on");
+            $("winImg").src = winItem.img;
+            $("winName").textContent = winItem.name;
+            $("winPrice").textContent = fmt(winItem.price) + ' ₽';
+            $("mWin").classList.add("on");
+        }, 5200);
+    };
+
+    // --- 5. ПРОДАЖА ---
+    window.sellItem = function(index) {
+        var item = S.inv[index];
+        S.bal += item.price;
+        S.inv.splice(index, 1);
+        save(); render();
+        toast("Вы продали " + item.name + " за " + fmt(item.price) + " ₽");
+    };
+
+    $("sellAllBtn").onclick = function() {
+        if(S.inv.length === 0) { toast("В инвентаре нет предметов!"); return; }
+        var totalSum = 0;
+        for(var i=0; i<S.inv.length; i++) totalSum += S.inv[i].price;
+        if(confirm("Продать ВСЕ предметы (" + S.inv.length + " шт.) за " + fmt(totalSum) + " ₽?")) {
+            S.bal += totalSum; S.inv = []; save(); render();
+            toast("Вы продали все предметы за " + fmt(totalSum) + " ₽");
+        }
+    };
+
+    // --- 6. АПГРЕЙДЕР ---
+    var selectedSourceItem = null;
+    var selectedTargetSkin = null;
+
+    window.goToUpgrade = function(index) {
+        location.hash = "#upgrade";
+        setTimeout(function() {
+            var items = document.querySelectorAll('.upg-inv-item');
+            if(items[index]) items[index].click();
+        }, 100);
+    };
+
     function renderUpgInventory() {
         var container = $("upgInvList");
         container.innerHTML = "<h4>Мой инвентарь</h4>";
@@ -565,7 +609,6 @@ window.onload = function() {
         }
     }
 
-    // Рендер всех доступных скинов в правой колонке
     function renderTargetList(filterText = "") {
         var container = $("upgTargetList");
         container.innerHTML = "";
@@ -590,52 +633,42 @@ window.onload = function() {
         }
     }
 
-    // Фильтрация целевых скинов
     window.filterTargets = function() {
-        var text = $("targetSearch").value;
-        renderTargetList(text);
+        renderTargetList($("targetSearch").value);
     };
 
-    // Обновление круга и слотов
     function updateUpgradeUI() {
-        // Слот "Из"
         if (selectedSourceItem) {
-            $("upgSourceSlot").innerHTML = '<img src="' + selectedSourceItem.img + '" style="max-height:50px; max-width:60px;"><div style="font-size:10px; margin-top:2px;">' + fmt(selectedSourceItem.price) + ' ₽</div>';
+            $("upgSourceSlot").innerHTML = '<img src="' + selectedSourceItem.img + '"><div style="font-size:10px;">' + fmt(selectedSourceItem.price) + ' ₽</div>';
         } else {
             $("upgSourceSlot").innerHTML = '<span>Выбрать<br>скин</span>';
         }
 
-        // Слот "В"
         if (selectedTargetSkin) {
-            $("upgTargetSlot").innerHTML = '<img src="' + selectedTargetSkin.img + '" style="max-height:50px; max-width:60px;"><div style="font-size:10px; margin-top:2px;">' + fmt(selectedTargetSkin.price) + ' ₽</div>';
+            $("upgTargetSlot").innerHTML = '<img src="' + selectedTargetSkin.img + '"><div style="font-size:10px;">' + fmt(selectedTargetSkin.price) + ' ₽</div>';
         } else {
             $("upgTargetSlot").innerHTML = '<span>Выбрать<br>цель</span>';
         }
 
-        // Расчет шанса
         if (selectedSourceItem && selectedTargetSkin) {
-            // Формула: Шанс = (Стоимость источника / Стоимость цели) * 100
-            // Ограничиваем от 1% до 90%
             var chance = (selectedSourceItem.price / selectedTargetSkin.price) * 100;
             chance = Math.max(1, Math.min(90, chance));
-
             $("upgChanceText").textContent = Math.round(chance) + "%";
             $("doUpgradeBtn").disabled = false;
 
-            // Обновляем круг
             var circle = $("upgCircleProgress");
-            var radius = 110;
-            var circumference = 2 * Math.PI * radius; // ~691.15
+            var circumference = 2 * Math.PI * 110; 
             var offset = circumference - (chance / 100) * circumference;
             circle.style.strokeDashoffset = offset;
+            $("upgCircleIcon").textContent = "🔥";
         } else {
             $("upgChanceText").textContent = "0%";
             $("doUpgradeBtn").disabled = true;
             $("upgCircleProgress").style.strokeDashoffset = 691.15;
+            $("upgCircleIcon").textContent = "⬆️";
         }
     }
 
-    // Сама логика апгрейда (вызывается по кнопке)
     window.doUpgrade = function() {
         if (!selectedSourceItem) { toast("Выберите скин из инвентаря!"); return; }
         if (!selectedTargetSkin) { toast("Выберите целевой скин!"); return; }
@@ -644,25 +677,17 @@ window.onload = function() {
         chance = Math.max(1, Math.min(90, chance));
         var isWin = (Math.random() * 100) <= chance;
 
-        // Анимация рулетки
         var strip = $("upgRollStrip");
         strip.style.transition = "none";
         strip.style.transform = "translateX(0)";
         var html = "";
         
-        // Генерируем 60 элементов, на 55-м будет либо цель, либо дешевый скин
-        var loseSkin = ALL_SKINS[0]; // Самый дешевый
-        for (var i = 0; i < ALL_SKINS.length; i++) {
-            if (ALL_SKINS[i].price < loseSkin.price) loseSkin = ALL_SKINS[i];
-        }
+        var loseSkin = ALL_SKINS[0];
         var finalItem = isWin ? selectedTargetSkin : loseSkin;
 
         for (var j = 0; j < 60; j++) {
             var itemToShow = (j === 55) ? finalItem : ALL_SKINS[Math.floor(Math.random() * ALL_SKINS.length)];
-            html += '<div class="upg-roll-item">';
-            html += '<img src="' + itemToShow.img + '">';
-            html += '<div class="roll-name">' + itemToShow.name + '</div>';
-            html += '</div>';
+            html += '<div class="roll-item"><img src="' + itemToShow.img + '"><div class="roll-name">' + itemToShow.name + '</div></div>';
         }
         strip.innerHTML = html;
 
@@ -673,7 +698,6 @@ window.onload = function() {
             var itemWidth = 150; 
             var containerWidth = $("upgRollContainer").offsetWidth;
             var targetX = -(55 * itemWidth) + (containerWidth / 2) - (itemWidth / 2) - (Math.random() * 100 - 50);
-            
             strip.style.transition = "transform 5s cubic-bezier(0.05, 0.9, 0.1, 1)";
             strip.style.transform = "translateX(" + targetX + "px)";
         }, 100);
@@ -681,7 +705,6 @@ window.onload = function() {
         setTimeout(function() {
             $("mUpgRoll").classList.remove("on");
             
-            // Удаляем скин-источник из инвентаря
             S.inv.splice(selectedSourceItem._invIndex, 1);
 
             if (isWin) {
@@ -701,42 +724,86 @@ window.onload = function() {
                 $("upgWinPrice").style.color = "var(--red)";
             }
 
-            save(); 
-            render(); // Обновляем все UI
-            renderUpgInventory(); // Обновляем левую колонку
-            updateUpgradeUI(); // Сбрасываем круг
-
+            save(); render(); 
             $("mUpgWin").classList.add("on");
 
-            // Сброс выбора
             selectedSourceItem = null;
             selectedTargetSkin = null;
             document.querySelectorAll('.upg-inv-item').forEach(el => el.classList.remove('selected'));
             document.querySelectorAll('.upg-target-item').forEach(el => el.classList.remove('selected'));
             updateUpgradeUI();
-
         }, 5200);
     };
 
-    // ... (Функции render, renderTasks, renderCases, renderInventory, openCase, sellItem, sellAllBtn, bigBtn, taskList, packs, login и т.д. - оставляем без изменений)
+    // --- 7. ОСТАЛЬНОЕ (КЛИКЕР, ЗАДАНИЯ, ПОПОЛНЕНИЕ) ---
+    $("bigBtn").addEventListener("click", function(e) {
+        rollDay(); S.bal += 10; S.clicks++;
+        var tasks = ["c50", "c300", "c1000"];
+        for(var i=0; i<tasks.length; i++) S.prog[tasks[i]] = (S.prog[tasks[i]] || 0) + 1;
+        save(); render();
+        var f = document.createElement("div"); f.className = "fly"; f.textContent = "+10 ₽";
+        var x = e.clientX || innerWidth/2, y = e.clientY || innerHeight/2;
+        f.style.left = (x - 8 + (Math.random()*40 - 20)) + "px"; f.style.top = (y - 20) + "px";
+        document.body.appendChild(f); setTimeout(function(){ f.remove(); }, 800);
+    });
 
-    // Инициализация
-    function init() {
-        // ... вызов всех рендеров
-        renderUpgInventory();
-        renderTargetList();
-        updateUpgradeUI();
-        // ... route() и т.д.
+    $("taskList").addEventListener("click", function(e) {
+        var id = e.target.getAttribute("data-claim"); if(!id) return;
+        var k = null;
+        for(var i=0; i<TASKS.length; i++) if(TASKS[i].id === id) k = TASKS[i];
+        if(!k || S.claimed[id] || (S.prog[id] || 0) < k.goal) return;
+        S.claimed[id] = 1; S.bal += k.rw; S.tasksDone++;
+        save(); render(); toast("+" + k.rw + " ₽ за задание");
+    });
+
+    var PACKS = [[1000, "99 ₽"], [5000, "449 ₽"], [10000, "849 ₽"], [50000, "3 990 ₽"], [1, "1 BTC (Демо)"]];
+    var packHtml = "";
+    for(var i=0; i<PACKS.length; i++) {
+        var p = PACKS[i];
+        packHtml += '<button class="pack" data-pk="' + i + '"><b>' + (p[0] === 1 ? '₿ 1' : '₽ ' + fmt(p[0])) + '</b>' + p[1] + '</button>';
     }
+    $("packs").innerHTML = packHtml;
 
-    // Переопределяем route, чтобы при переходе на вкладку апгрейда рендерились списки
+    $("packs").addEventListener("click", function(e) {
+        var b = e.target.closest("[data-pk]"); if(!b) return;
+        var p = PACKS[b.getAttribute("data-pk")];
+        if(p[0] === 1) { S.btc += 1; } else { S.bal += p[0]; }
+        save(); render(); $("mTop").classList.remove("on");
+        toast("Зачислено " + (p[0] === 1 ? '1 BTC' : fmt(p[0]) + " ₽"));
+    });
+
+    function openTop() { $("mTop").classList.add("on"); }
+    $("topup").onclick = openTop; $("topup2").onclick = openTop;
+
+    $("login").onclick = function() { $("mLogin").classList.add("on"); $("nick").focus(); };
+    $("doLogin").onclick = function() {
+        var n = $("nick").value.trim(); if(!n) { toast("Введите ник"); return; }
+        S.user = n; save(); render(); $("mLogin").classList.remove("on"); toast("Добро пожаловать, " + n);
+    };
+    $("logout").onclick = function() { S.user = null; save(); render(); location.hash = "cases"; };
+    $("userBox").onclick = function() { location.hash = "profile"; };
+    $("saveTrade").onclick = function() { S.trade = $("trade").value.trim(); save(); toast("Trade URL сохранён"); };
+    $("applyPromo").onclick = function() {
+        var c = $("promo").value.trim().toUpperCase();
+        if(c === "STAR-50" && !S.promo) { S.promo = true; S.bal += 50; save(); render(); toast("+50 ₽"); }
+        else toast(S.promo && c === "STAR-50" ? "Код уже использован" : "Код не найден");
+    };
+
+    // --- 8. РОУТИНГ И ЗАПУСК ---
+    var closeBtns = document.querySelectorAll("[data-close]");
+    for(var i=0; i<closeBtns.length; i++) closeBtns[i].onclick = function() { this.closest(".modal").classList.remove("on"); };
+    var modals = document.querySelectorAll(".modal");
+    for(var i=0; i<modals.length; i++) modals[i].addEventListener("click", function(e) { 
+        if(e.target === this && this.id !== "mRoll" && this.id !== "mUpgRoll") this.classList.remove("on"); 
+    });
+
     window.route = function() {
         var v = (location.hash || "#cases").slice(1);
-        if (!$("v-" + v)) v = "cases";
+        if(!$("v-" + v)) v = "cases";
         var views = document.querySelectorAll(".view");
-        for (var i = 0; i < views.length; i++) views[i].classList.toggle("on", views[i].id === "v-" + v);
+        for(var i=0; i<views.length; i++) views[i].classList.toggle("on", views[i].id === "v-" + v);
         var links = document.querySelectorAll("#nav a");
-        for (var i = 0; i < links.length; i++) links[i].classList.toggle("on", links[i].getAttribute("data-v") === v);
+        for(var i=0; i<links.length; i++) links[i].classList.toggle("on", links[i].getAttribute("data-v") === v);
 
         if (v === "upgrade") {
             renderUpgInventory();
@@ -744,9 +811,10 @@ window.onload = function() {
             updateUpgradeUI();
         }
     };
-
-    // Запуск
-    // ... (вызов route() и всех рендеров)
+    window.addEventListener("hashchange", route);
+    
+    route();
+    render();
 };
 </script>
 </body>
