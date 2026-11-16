@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StarCase — кейсы CS2</title>
+<style>
+/* --- ДИЗАЙН ОТ ТВОЕГО ДРУГА --- */
+:root{color-scheme:light dark;--bg:#f3f1fb;--sf:#fff;--sf2:#ebe8f7;--tx:#1b1535;--mu:#6a6490;--ac:#7c4dff;--ac2:#0aa5c9;--gold:#b9770e;--bd:#d9d4ee;--ok:#12906a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8}}
+:root[data-theme="dark"]{--bg:#0d0b1e;--sf:#171434;--sf2:#201c45;--tx:#ece9ff;--mu:#9a94c8;--ac:#8f6bff;--ac2:#34d6ff;--gold:#ffc857;--bd:#2d2862;--ok:#3ee0a8}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Exo 2",system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:20px;padding:10px 24px;background:var(--sf);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.logo{font-weight:800;font-size:22px;letter-spacing:.5px;display:flex;gap:8px;align-items:center}
+.logo i{font-style:normal;color:var(--gold)}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:10px;color:var(--mu);text-decoration:none;font-weight:600}
+nav a.on,nav a:hover{background:var(--sf2);color:var(--tx)}
+.right{display:flex;gap:12px;align-items:center}
+.bal{display:flex;align-items:center;gap:10px;background:var(--sf2);padding:6px 6px 6px 14px;border-radius:30px;font-weight:700}
+.bal b{color:var(--gold)}
+.btn{border:0;border-radius:10px;padding:9px 16px;font-weight:700;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.btn.sm{padding:5px 12px;border-radius:20px}
+.btn.ghost{background:var(--sf2);color:var(--tx)}
+.btn:disabled{opacity:.5;cursor:default}
+.ava{width:40px;height:40px;border-radius:50%;border:2px solid var(--ac);object-fit:cover;background:var(--sf2)}
+.user{display:flex;gap:10px;align-items:center;cursor:pointer;background:none;border:0;padding:0}
+main{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:28px;margin:0 0 4px}
+.sub{color:var(--mu);margin:0 0 24px}
+.view{display:none}.view.on{display:block}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.clicker{text-align:center;padding:36px 20px}
+.big{width:210px;height:210px;border-radius:50%;border:0;font-size:64px;color:#fff;background:radial-gradient(circle at 35% 30%,var(--ac2),var(--ac) 60%,#3b1d9a);box-shadow:0 0 0 10px var(--sf2),0 12px 40px rgba(124,77,255,.45);transition:transform .08s;user-select:none;-webkit-tap-highlight-color:transparent}
+.big:active{transform:scale(.94)}
+.hint{color:var(--mu);margin-top:22px}
+.fly{position:fixed;pointer-events:none;font-weight:800;color:var(--gold);animation:fly .8s ease-out forwards;z-index:20}
+@keyframes fly{to{transform:translateY(-70px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.fly{animation:none;opacity:0}.big{transition:none}}
+.task{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.task .in{flex:1}
+.bar{height:8px;background:var(--sf2);border-radius:8px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+.rw{font-weight:800;color:var(--gold);white-space:nowrap}
+.prof{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.me{display:flex;gap:16px;align-items:center}
+.me .ava{width:84px;height:84px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.stats b{display:block;font-size:24px;color:var(--ac2)}
+.stats span{color:var(--mu);font-size:13px}
+input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font:inherit}
+.row{display:flex;gap:8px;margin-top:10px}
+h3{margin:0 0 10px;font-size:17px}
+.empty{color:var(--mu);text-align:center;padding:30px}
+.modal{position:fixed;inset:0;background:rgba(5,3,20,.7);display:none;align-items:center;justify-content:center;z-index:30;padding:16px}
+.modal.on{display:flex}
+.modal .card{width:100%;max-width:400px}
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.pack{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
+.pack:hover{border-color:var(--ac)}
+.pack b{display:block;color:var(--gold);font-size:18px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--sf);border:1px solid var(--ac);padding:10px 18px;border-radius:12px;z-index:40;display:none}
+.note{font-size:13px;color:var(--mu);margin-top:10px}
 
+/* --- ДОБАВЛЕННЫЕ СТИЛИ ДЛЯ КЕЙСОВ И СКИНОВ --- */
+.case-card{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:15px;text-align:center;display:flex;flex-direction:column;transition:transform .2s;cursor:pointer}
+.case-card:hover{transform:translateY(-4px);border-color:var(--ac)}
+.case-img{width:100%;height:110px;background:linear-gradient(135deg, rgba(143,107,255,0.2) 0%, rgba(52,214,255,0.1) 100%);border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:44px;color:var(--gold)}
+.case-card.btc-card{border-color:#f7931a}
+.case-card.btc-card .case-img{background:linear-gradient(135deg, rgba(247,147,26,0.2) 0%, rgba(247,147,26,0.05) 100%);color:#f7931a}
+.case-name{font-weight:700;margin-bottom:5px}
+.case-price{color:var(--gold);font-weight:800;font-size:16px;margin-bottom:12px}
+.btn-buy{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border:none;padding:8px;border-radius:8px;font-weight:bold;width:100%;margin-top:auto}
+.btn-buy.btc-buy{background:#f7931a}
+.inv-item{background:var(--sf2);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.inv-item img{height:70px;object-fit:contain;margin-bottom:10px}
+.inv-name{font-size:12px;font-weight:600;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+.inv-price{color:var(--gold);font-weight:800;margin-bottom:10px;font-size:13px}
+.btn-sell{background:var(--ok);color:#fff;border:none;padding:6px 10px;border-radius:6px;width:100%;font-size:12px;font-weight:bold;margin-bottom:5px}
+.btn-upg{background:var(--ac);color:#fff;border:none;padding:6px 10px;border-radius:6px;width:100%;font-size:12px;font-weight:bold}
+.upg-slots{display:flex;justify-content:center;align-items:center;gap:20px;margin:20px 0}
+.upg-slot{width:150px;height:120px;border:2px dashed var(--bd);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--sf2);text-align:center;font-size:12px;color:var(--mu)}
+.upg-slot img{max-height:60px;object-fit:contain;margin-bottom:5px}
+.mult-grid{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.mult-btn{background:var(--sf2);border:1px solid var(--bd);padding:8px 12px;border-radius:8px;font-weight:bold;font-size:14px}
+.mult-btn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.win-modal-content{text-align:center}
+.win-modal-content img{max-height:140px;margin-bottom:15px}
+</style>
+</head>
+<body>
+<!-- ШАПКА -->
+<header>
+  <div class="logo"><i>✦</i> StarCase</div>
+  <nav id="nav">
+    <a href="#cases" data-v="cases">Кейсы</a>
+    <a href="#upgrade" data-v="upgrade">Апгрейд</a>
+    <a href="#click" data-v="click">Кликер</a>
+    <a href="#tasks" data-v="tasks">Задания</a>
+    <a href="#profile" data-v="profile">Профиль</a>
+  </nav>
+  <div class="right">
+    <div class="bal">
+      <span>₽ <b id="balTop">0</b></span>
+      <span style="color:#f7931a;margin-left:5px">₿ <b id="btcBalTop">0</b></span>
+      <button class="btn sm" id="topup">Пополнить</button>
+    </div>
+    <button class="btn" id="login">Войти через Steam</button>
+    <button class="user" id="userBox" style="display:none" aria-label="Профиль"><img class="ava" id="avaTop" alt=""><span id="nameTop"></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- КЕЙСЫ -->
+  <section class="view" id="v-cases">
+    <h1>Кейсы CS2</h1>
+    <p class="sub">Выберите кейс и испытайте удачу.</p>
+    <div class="grid" id="caseGrid"></div>
+  </section>
+
+  <!-- АПГРЕЙД -->
+  <section class="view" id="v-upgrade">
+    <h1>Апгрейд скинов</h1>
+    <p class="sub">Улучшите свой скин, выбрав множитель.</p>
+    <div class="card">
+      <div class="upg-slots">
+        <div class="upg-slot" id="upgFrom"><span>Выберите скин<br>в инвентаре</span></div>
+        <div style="font-size:24px;color:var(--gold)">➔</div>
+        <div class="upg-slot" id="upgTo"><span>Результат</span></div>
+      </div>
+      <h3 style="text-align:center;margin-bottom:10px">Шанс / Множитель:</h3>
+      <div class="mult-grid" id="multGrid">
+        <button class="mult-btn" onclick="setUpgrade(2, 50, this)">x2 (50%)</button>
+        <button class="mult-btn" onclick="setUpgrade(3.3, 30, this)">30% (x3.3)</button>
+        <button class="mult-btn" onclick="setUpgrade(1.33, 75, this)">75% (x1.33)</button>
+        <button class="mult-btn" onclick="setUpgrade(3, 33, this)">x3 (33%)</button>
+        <button class="mult-btn" onclick="setUpgrade(5, 20, this)">x5 (20%)</button>
+        <button class="mult-btn" onclick="setUpgrade(10, 10, this)">x10 (10%)</button>
+        <button class="mult-btn" onclick="setUpgrade(15, 6.6, this)">x15 (6.6%)</button>
+      </div>
+      <button class="btn" style="width:100%;padding:15px;font-size:18px" onclick="doUpgrade()">Апгрейд</button>
+    </div>
+  </section>
+
+  <!-- КЛИКЕР -->
+  <section class="view" id="v-click">
+    <h1>Кликер</h1>
+    <p class="sub">Каждый клик добавляет +10 ₽ на баланс.</p>
+    <div class="card clicker">
+      <button class="big" id="bigBtn" aria-label="Клик +10">✦</button>
+      <div class="hint">Кликов всего: <b id="clicks">0</b></div>
+    </div>
+  </section>
+
+  <!-- ЗАДАНИЯ -->
+  <section class="view" id="v-tasks">
+    <h1>Ежедневные задания</h1>
+    <p class="sub">Обновляются каждый день в 00:00.</p>
+    <div id="taskList"></div>
+  </section>
+
+  <!-- ПРОФИЛЬ -->
+  <section class="view" id="v-profile">
+    <h1>Профиль</h1>
+    <p class="sub">&nbsp;</p>
+    <div class="prof">
+      <div class="card">
+        <div class="me"><img class="ava" id="avaP" alt=""><div><div style="font-size:20px;font-weight:800" id="nameP">Гость</div><div>Баланс: <b style="color:var(--gold)">₽ <span id="balP">0</span></b> / <b style="color:#f7931a">₿ <span id="btcBalP">0</span></b></div></div></div>
+        <div class="row"><button class="btn" id="topup2">Пополнить</button><button class="btn ghost" id="logout">Выйти</button></div>
+      </div>
+      <div class="card"><h3>Статистика</h3>
+        <div class="stats"><div><b id="stClicks">0</b><span>кликов</span></div><div><b id="stTasks">0</b><span>заданий</span></div><div><b id="stCases">0</b><span>кейсов</span></div></div>
+      </div>
+      <div class="card"><h3>Trade URL</h3>
+        <input id="trade" placeholder="https://steamcommunity.com/tradeoffer/new/?partner=…">
+        <div class="row"><button class="btn" id="saveTrade">Сохранить</button></div>
+      </div>
+      <div class="card"><h3>Промокод</h3>
+        <input id="promo" placeholder="Введите код">
+        <div class="row"><button class="btn" id="applyPromo">Применить</button></div>
+        <div class="note">Пробный код: STAR-50</div>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:28px">Ваши предметы</h3>
+    <div class="grid" id="invGrid"></div>
+  </section>
+</main>
+
+<!-- МОДАЛКИ -->
+<div class="modal" id="mTop"><div class="card">
+  <h3>Пополнение баланса</h3>
+  <p class="note" style="margin-top:0">Выберите пакет (оплата не подключена).</p>
+  <div class="packs" id="packs"></div>
+  <button class="btn ghost" data-close>Закрыть</button>
+</div></div>
+
+<div class="modal" id="mLogin"><div class="card">
+  <h3>Вход через Steam</h3>
+  <p class="note" style="margin-top:0">Демо-вход. Введите ник для проверки.</p>
+  <input id="nick" placeholder="Ваш ник" maxlength="20">
+  <div class="row"><button class="btn" id="doLogin">Войти</button><button class="btn ghost" data-close>Отмена</button></div>
+</div></div>
+
+<div class="modal" id="mWin"><div class="card win-modal-content">
+  <h2 style="color:var(--gold)">Вы выиграли!</h2>
+  <img id="winImg" src="" alt="skin">
+  <h3 id="winName" style="margin-bottom:5px"></h3>
+  <p style="font-size:20px;color:var(--ok);font-weight:bold;margin-bottom:15px" id="winPrice"></p>
+  <button class="btn" data-close>Забрать</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<!-- СЮДА ПОДКЛЮЧАЕТСЯ ФАЙЛ С ЛОГИКОЙ (или скрипт вставляется прямо сюда) -->
+<!-- <script src="script.js"></script> -->
+</body>
+</html>
